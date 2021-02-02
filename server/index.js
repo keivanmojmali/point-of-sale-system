@@ -92,7 +92,27 @@ app.get('/api/orders/', (req, res, next)=>{
 
 //THIS WILL TAKE FROM INVENTORY AND POST INTO ORDERITEMS
 //WITH THE SAME ORDERiD
-app.post()
+app.post(`api/addTo/${itemId}/${orderId}`(req,res,next)=>{
+  const orderId = parseInt(req.params.orderId,10);
+  const itemId = parseInt(req.params.itemId, 10);
+  if(!Number.isInteger(orderId) || orderId < 0){
+    throw new ClientError(400,'orderId must be a positive integer')
+  };
+if (!Number.isInteger(itemId) || itemId < 0) {
+  throw new ClientError(400, 'orderId must be a positive integer')
+};
+  const sql = `
+  insert into "orderItems" ("itemId","orderId")
+  values ($1,$2)
+  returning *
+  `;
+  const params = [itemId, orderId]
+  db.query(sql,params)
+  .then(result=>{
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>next(err))
+})
 
 
 
@@ -133,32 +153,48 @@ app.get('api/orderItems/orderId',(req,res,next)=>{
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
-app.path()
+app.path(`/api/orders/complete/${orderId}`,(req,res,next)=>{
+  const orderId = parseInt(req.params.orderId,10);
+  if(!Number.isInteger || orderId < 0){
+    throw new ClientError(400,'OrderId must be a positive integer')
+  }
+  const sql = `
+  update "order"
+  set "isComplete" = true
+  where "orderId" = $1
+  returning *
+  `;
+  const params = [orderId]
+  db.query(sql,params)
+  .then(result=>{
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>next(err));
+})
+
 
 
 //THIS WILL UPDATE THE CLIENT INFORMATION ONCE THEY HAVE ENTERED IT
 //INTO THE SYSTEM
-app.post()
-
-
-
-
+app.post(`/api/customer/`,(req,res,next)=>{
+const lastName = req.params.lastName;
+if(!lastName){
+  throw new ClientError(400,'lastName is required fields')
+}
+const sql = `
+  insert into "customers" ("lastName")
+  value($1)
+  returning *
+`;
+const params = [lastName];
+db.query(sql,parms)
+.then(result=>{
+  res.status(201).json(result.rows)
+})
+.catch(err=>next(err))
+})
 
 
 
