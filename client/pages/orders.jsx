@@ -9,7 +9,9 @@ import React from 'react';
 export default class Orders extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      ordersArray = [];
+    };
     this.ordersArray = [];
     this.querryOrders = this.querryOrders.bind(this);
     this.renderArray = this.renderArray.bind(this);
@@ -26,6 +28,7 @@ export default class Orders extends React.Component {
     .then(result.json())
     .then(result=>{
       this.ordersArray = result.rows;
+      //change this to state
     })
     .catch(err=>next(err));
 
@@ -34,9 +37,11 @@ export default class Orders extends React.Component {
     //take the order id and then change it to the past orders table
 
   };
-  renderArray(){
+  componentDidMount(){
     this.querryOrders();
-    this.ordersArray.map((order)=>{
+  }
+  renderArray(){
+    this.state.ordersArray.map((order)=>{
       <div className="row">
         <div className="col">
           <div className="row">

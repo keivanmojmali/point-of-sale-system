@@ -92,15 +92,29 @@ app.get('/api/orders/', (req, res, next)=>{
 
 //THIS WILL TAKE FROM INVENTORY AND POST INTO ORDERITEMS
 //WITH THE SAME ORDERiD
+//NEEDS TO BE A CONDITIONAL THAT IF THERE IS NO ORDERiD THEN YOU
+//LEAVE IT OUT AND IT WILL SEND TO AUTO INCREMENT
+//FETCH NEEDS TO SAVE ORDERiD TO LOCALSTORAGE
+
 app.post(`api/addTo/${itemId}/${orderId}`(req,res,next)=>{
   const orderId = parseInt(req.params.orderId,10);
   const itemId = parseInt(req.params.itemId, 10);
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'orderId must be a positive integer')
   };
-if (!Number.isInteger(itemId) || itemId < 0) {
-  throw new ClientError(400, 'orderId must be a positive integer')
-};
+if (orderId === undefined) {
+  const sql = `
+  insert into "orderItems" ("itemId")
+  values ($1)
+  returning *
+  `;
+  const params = [itemId, orderId]
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows)
+    })
+    .catch(err => next(err))
+} else {
   const sql = `
   insert into "orderItems" ("itemId","orderId")
   values ($1,$2)
@@ -112,31 +126,11 @@ if (!Number.isInteger(itemId) || itemId < 0) {
     res.status(201).json(result.rows)
   })
   .catch(err=>next(err))
+}
 })
 
 
 
-
-//THIS WILL INCREASE THE ORDER ID BY ONE ONCE THE CHECKOUT
-//BUTTON HAS INITIATED IT
-app.patch(`api/orderId/add/${orderId}`,(req,res,next)=>{
-  const orderId = parseInt(req.params.orderId,10);
-  if(!Number.isInteger(orderId) || orderId < 0) {
-    throw new ClientError(400,'orderId must be a positive integer');
-  }
-  const newOrder = orderId + 1;
-  const sql = `
-  update "orderItems"
-  set "orderId" = $1
-  returning *
-  `;
-  const params = [newOrder];
-  db.query(sql,params)
-  .then(result=> {
-    res.status(201).json(result.rows)
-  })
-  .catch(err=>next(err));
-})
 
 //THIS WILL GET THE CURRENT ORDER ID
 app.get('api/orderItems/orderId',(req,res,next)=>{
