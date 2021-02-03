@@ -1,5 +1,5 @@
 //YOU NEED TO PROPERLY UPDATE THIS CLIENT ERROR PATH IN THE REQUIRE
-const ClientError = require('client-error');
+const ClientError = require('./client-error');
 
 function errorMiddleware(err,req,res,next) {
   if(err instanceof ClientError) {

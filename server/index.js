@@ -1,9 +1,8 @@
-// Possible Requires
 require('dotenv/config');
 const pg = require('pg');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
-const ClientError = require('.error-middleware');
+const ClientError = require('./error-middleware');
 const errorMiddleware = require('./error-middleware');
 
 const db = new pg.Pool({
@@ -19,9 +18,9 @@ app.use(jsonMiddleware,staticMiddleware);
 
 
 //GET ALL OF THE INVENTORY IN A SPECIFIC CATEGORY
-app.get(`/api/category/${type}`,(req,res,next)=>{
+app.get(`/api/category/byType`,(req,res,next)=>{
   const type = req.params.type;
-  if (!type)) {
+  if (!type) {
     throw new ClientError(400,'Type is a required field')
   };
   const sql = `
@@ -48,17 +47,18 @@ app.get(`/api/category/${type}`,(req,res,next)=>{
 
 
 //GET ALL CATEGORIES AND THEIR DATA - GROUPED BY THE TYPE
-app.get('/api/category', (req, res, next) => {
+app.get('/api/category/getAll', (req, res, next) => {
 //Add conditionals here if you have any
 const sql = `
   select *
   from "inventory"
   group by "type"
+
 `;
 
 db.query(sql)
 .then(result=>{
-  const [categoryData] = result.rows;
+  const categoryData = result.rows;
   res.status(201).json(categoryData);
 })
 .catch(err=>{
@@ -69,7 +69,7 @@ db.query(sql)
 
 //GET ALL THE ORDERS FROM THE CURRENT SHOPPING CART
 //ORDERS TABLE WHERE ISCOMPLETE = FALSE
-app.get('/api/orders/', (req, res, next)=>{
+app.get('/api/orders/getAll', (req, res, next)=>{
   //ADD ANY CONDITIONS HERE
 
   const sql = `
@@ -96,7 +96,7 @@ app.get('/api/orders/', (req, res, next)=>{
 //LEAVE IT OUT AND IT WILL SEND TO AUTO INCREMENT
 //FETCH NEEDS TO SAVE ORDERiD TO LOCALSTORAGE
 
-app.post(`api/addTo/${itemId}/${orderId}`(req,res,next)=>{
+app.post(`api/addTo/openOrders`,(req,res,next)=>{
   const orderId = parseInt(req.params.orderId,10);
   const itemId = parseInt(req.params.itemId, 10);
   if(!Number.isInteger(orderId) || orderId < 0){
@@ -149,7 +149,7 @@ app.get('api/orderItems/orderId',(req,res,next)=>{
 
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
-app.path(`/api/orders/complete/${orderId}`,(req,res,next)=>{
+app.path(`/api/orders/complete`,(req,res,next)=>{
   const orderId = parseInt(req.params.orderId,10);
   if(!Number.isInteger || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
@@ -172,7 +172,7 @@ app.path(`/api/orders/complete/${orderId}`,(req,res,next)=>{
 
 //THIS WILL UPDATE THE CLIENT INFORMATION ONCE THEY HAVE ENTERED IT
 //INTO THE SYSTEM
-app.post(`/api/customer/`,(req,res,next)=>{
+app.post(`/api/customer`,(req,res,next)=>{
 const lastName = req.params.lastName;
 if(!lastName){
   throw new ClientError(400,'lastName is required fields')
@@ -193,7 +193,7 @@ db.query(sql,parms)
 
 
 //THIS IS TO UPDATE AN SPECIFIC ITEM IN THE CATEGORY
-app.patch(`/api/category/${itemId}`, (req,res,next) => {
+app.patch(`/api/category/updateItem`, (req,res,next) => {
   const itemId = parseInt(req.params.itemId,10);
   if(!Number.isInteger(itemId) || itemId < 0) {
     throw new ClientError(400,'Item Id must be a positive integer')
