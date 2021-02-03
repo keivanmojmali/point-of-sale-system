@@ -1,4 +1,3 @@
-import { application } from 'express';
 import React from 'react';
 
 export default class Pos extends React.Component {

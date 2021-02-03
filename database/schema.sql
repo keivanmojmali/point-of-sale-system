@@ -35,13 +35,15 @@ CREATE TABLE "users" (
 
 CREATE TABLE "customers" (
 	"customerId" serial NOT NULL,
-	"phone" integer NOT NULL,
+	"phone" VARCHAR(255) NOT NULL,
 	"firstName" VARCHAR(255) NOT NULL,
 	"lastName" VARCHAR(255) NOT NULL,
 	CONSTRAINT "customers_pk" PRIMARY KEY ("customerId")
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 
 
@@ -58,7 +60,7 @@ CREATE TABLE "orders" (
 
 
 CREATE TABLE "orderItems" (
-	"orderId" integer NOT NULL,
+	"orderId" serial NOT NULL,
 	"itemId" integer NOT NULL,
 	"price" integer NOT NULL
 ) WITH (
@@ -73,5 +75,5 @@ CREATE TABLE "orderItems" (
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFERENCES "customers"("customerId");
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk0" FOREIGN KEY ("orderId") REFERENCES "orders"("orderId");
+-- ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk0" FOREIGN KEY ("orderId") REFERENCES "orders"("orderId");
 ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk1" FOREIGN KEY ("itemId") REFERENCES "inventory"("itemId");
