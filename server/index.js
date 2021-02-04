@@ -120,7 +120,7 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
 app.get('api/orderItems/orderId',(req,res,next)=>{
   //ADD ANY CONDITIONS HERE
   const sql = `
-  select "orderId"
+  select max("orderId")
   from "orderItems"
   `;
   db.query(sql)
@@ -131,16 +131,18 @@ app.get('api/orderItems/orderId',(req,res,next)=>{
 })
 
 
+//**TESTED */
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
-app.path(`/api/orders/complete`,(req,res,next)=>{
+app.patch(`/api/orders/complete`,(req,res,next)=>{
+  console.log('made it here');
   const orderId = parseInt(req.body.orderId,10);
-  if(!Number.isInteger || orderId < 0){
+  if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
   }
   const sql = `
-  update "order"
-  set "isComplete" = true
+  update "orders"
+  set "isComplete" = 'true'
   where "orderId" = $1
   returning *
   `;
@@ -149,13 +151,17 @@ app.path(`/api/orders/complete`,(req,res,next)=>{
   .then(result=>{
     res.status(201).json(result.rows)
   })
-  .catch(err=>next(err));
+  .catch(err=>{
+      console.error(err)
+    next(err)});
 })
 
 
 //**TESTED */
-//THIS WILL UPDATE THE CLIENT INFORMATION ONCE THEY HAVE ENTERED IT
-//INTO THE SYSTEM
+//THIS WILL POST THE CLIENT INFO -- RETURN A CUSOTMER ID
+//THEN POST THAT CUSTOMER ID AND THEIR ORDER INTO THHE ORDERS TABLE
+//THIS HAPPENS AFTER CHECKOUT
+
 app.post(`/api/customers/orders`,(req,res,next)=>{
 const firstName = req.body.firstName;
 const lastName = req.body.lastName;
@@ -195,22 +201,13 @@ console.log('adadadada',newCustomerId)
   }).catch(err=>{
     console.error(err)
     next(err)})
-
-
-
   res.status(201).json(result.rows)
 })
 .catch(err=>{
   console.error(err)
   next(err);
 })
-
-
 })
-
-
-
-
 
 
 
@@ -246,6 +243,29 @@ db.query(sql,params)
 })
 .catch(err=>next(err));
 })
+
+
+
+//**TESTED */
+// THIS WILL PULL IN ALL OF THE ORDERS FROM THE ORDERS TABLE
+app.get('/api/getAll/orders',(req,res,next)=>{
+  const sql = `
+  select *
+  from "orders"
+  `
+  db.query(sql)
+  .then(result=>{
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>next(err))
+
+})
+
+
+
+
+
+
 
 
 
