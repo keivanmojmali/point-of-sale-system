@@ -48,7 +48,7 @@ CREATE TABLE "customers" (
 
 
 CREATE TABLE "orders" (
-	"orderId" serial NOT NULL,
+	"orderId" integer NOT NULL,
 	"customerId" integer NOT NULL,
 	"isComplete" BOOLEAN NOT NULL,
 	"userId" serial NOT NULL,

@@ -67,29 +67,12 @@ db.query(sql)
 });
 })
 
-
-
-//GET ALL THE ORDERS FROM THE CURRENT SHOPPING CART
-//ORDERS TABLE WHERE ISCOMPLETE = FALSE
-app.get('/api/orders/getAll', (req, res, next)=>{
-  //ADD ANY CONDITIONS HERE
-
-  const sql = `
-  select *
-  from "orders"
-  join "orderItems" using ("orderId")
-  join "inventory" using ("itemId")
-  group by "orderId"
-  where "isComplete" = 'false'
-  `;
-  db.query(sql)
-  .then(result=>{
-    const ordersData = result.rows;
-    res.status(201).json(ordersData);
-  })
-  .catch(err=>next(err));
+//THIS WILL get the customer info // USERiNFO
+//THEN IT WILL TAJE THE ORDERiTEMS TABLE AND INSER INTO ORDERS
+app.post(`/api/postOrder`,(req,res,next)=>{
 
 })
+
 
 
 //**Tested */
@@ -173,11 +156,13 @@ app.path(`/api/orders/complete`,(req,res,next)=>{
 //**TESTED */
 //THIS WILL UPDATE THE CLIENT INFORMATION ONCE THEY HAVE ENTERED IT
 //INTO THE SYSTEM
-app.post(`/api/customers`,(req,res,next)=>{
+app.post(`/api/customers/orders`,(req,res,next)=>{
 const firstName = req.body.firstName;
 const lastName = req.body.lastName;
 const phone = req.body.phone.toString();
-console.log('hehehehe',phone.length)
+const currentOrder = req.body.orderId;
+  let newCustomerId = null;
+  const isNotComplete = false;
 
 if(!lastName || !firstName || !phone){
   throw new ClientError(400,'firstName, lastName and phone are required fields')
@@ -190,24 +175,40 @@ if(phone.length < 7){
 const sql = `
   insert into "customers" ("firstName","lastName","phone")
   values ($1,$2,$3)
-  returning *
+  returning "customerId"
 `;
 const params = [firstName,lastName,phone];
 db.query(sql,params)
 .then(result=>{
-  console.log(result.rows)
+  newCustomerId = result.rows[0].customerId;
+console.log('adadadada',newCustomerId)
+  const postsql = `
+  insert into "orders" ("orderId","customerId","isComplete")
+  values ($1,$2,$3)
+  returning *
+  `;
+  const postParams = [currentOrder,newCustomerId,isNotComplete]
+  db.query(postsql,postParams)
+  .then(result=>{
+    console.log('HHHH',result.rows)
+    res.status(201).json(result.rows)
+  }).catch(err=>{
+    console.error(err)
+    next(err)})
+
+
+
   res.status(201).json(result.rows)
 })
 .catch(err=>{
   console.error(err)
   next(err);
 })
+
+
 })
 
 
-
-//THIS WILL TAKE ALL OF THE ORDERITEMS WITH THE SAME ORDERID AND THEN
-//GROUP THEM AND THEN MAP SEND THEM TO ORDER WITH ISCOMPLETE ON FALSE
 
 
 
