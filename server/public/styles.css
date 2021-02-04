@@ -26,5 +26,15 @@
 
   width: 30vh;
   height: 100vh;
-  background-color: lightblue;
+  background-color: lightgray;
+}
+
+
+.right {
+  overflow: scroll;
+  max-height: 100vh;
+}
+
+.width-sm {
+  width: 100%;
 }

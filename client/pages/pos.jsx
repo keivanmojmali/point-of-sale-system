@@ -15,7 +15,6 @@ export default class Pos extends React.Component {
     this.renderCategories = this.renderCategories.bind(this);
   };
   getData(){
-
     fetch('/api/category/getAll')
     .then(result=>{
       return result.json()
@@ -81,7 +80,7 @@ console.log(this.state)
           <div className="col d-flex flex-column column-left">
             {this.renderCategories()}
           </div>
-          <div className="col column-right">
+          <div className="col right">
             {this.renderData()}
           </div>
         </div>
