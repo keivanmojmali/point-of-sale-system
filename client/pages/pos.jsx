@@ -4,34 +4,66 @@ export default class Pos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentCategory: null,
+      categories: [],
       categoryData: []
     };
     this.getData = this.getData.bind(this);
     this.renderData = this.renderData.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getCategoryData = this.getCategoryData.bind(this);
+    this.renderCategories = this.renderCategories.bind(this);
   };
   getData(){
-    //add a fetch here that will
-    //get the category data and then return
-    //categories names and then return the names
-    //make sure the group is by type
-    fetch('/api/category/getAll',{
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    .then(result=>{
-      this.setState({category: result})
-    })
-    .catch(err => next(err))
 
-  };
-  renderData() {
-    if(this.state.category === null) {
-      return;
-    }
-    //this needs to render the data based on the categories
+    fetch('/api/category/getAll')
+    .then(result=>{
+      return result.json()
+    })
+    .then(data=>{
+      this.setState({categories: data})})
+    .catch(err=>{
+      next(err)
+    })
+  }
+  getCategoryData(event){
+        this.setState({ currentCategory: event.target.textContent })
+        let cat = event.target.textContent;
+        fetch(`api/category/byType/${cat}`)
+        .then(result => {
+            return result.json()
+          })
+          .then(data => {
+            console.log(data)
+            this.setState({ categoryData: data })
+          })
+          .catch(err => {
+            console.error(err)
+            next(err)})
+}
+
+renderData(){
+  return this.state.categoryData.map((item)=>{
+    return (
+      <div className="col" onClick={() => { this.handleClick(item.itemId) }}>
+        <img className="img-fluid" src={item.img} alt="Drink Image" />
+        <h4>{item.name}</h4>
+        <h4>{item.description}</h4>
+        <h6>{item.price}</h6>
+        <h6>{item.stock}</h6>
+      </div>
+    )
+  })
+}
+
+  renderCategories() {
+    return this.state.categories.map((category)=>{
+      return (
+        <button className='btn btn-primary btn-sm mt-2 mb-2 p-1' onClick={this.getCategoryData}>
+          <h5>{category.type}</h5>
+        </button>
+      )
+    })
   }
   handleClick(event){
     //you need to have an orderId counter here that is pulled from the db or
@@ -42,24 +74,18 @@ export default class Pos extends React.Component {
     this.getData();
   }
   render(){
-
+console.log(this.state)
     return (
       <div className="container">
         <div className="row">
-          <div className="col">
-            {/* //this is where the columns will go to */}
-            <h4>HIIIIIIIIIII</h4>
+          <div className="col d-flex flex-column column-left">
+            {this.renderCategories()}
           </div>
-          <div className="col">
-            <div className="row">
-              {/* //this is where the buttons for the
-            //orders will display */}
-              <h4>HIIIIIIII</h4>
-            </div>
+          <div className="col column-right">
+            {this.renderData()}
           </div>
         </div>
       </div>
     )
-          }
-
+}
 }

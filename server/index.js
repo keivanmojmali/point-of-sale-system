@@ -19,8 +19,8 @@ app.use(jsonMiddleware,staticMiddleware);
 
 
 //GET ALL OF THE INVENTORY IN A SPECIFIC CATEGORY
-app.get(`/api/category/byType`,(req,res,next)=>{
-  const type = req.body.type;
+app.get(`/api/category/byType/:type`,(req,res,next)=>{
+  const type = req.params.type;
   if (!type) {
     throw new ClientError(400,'Type is a required field')
   };
@@ -51,7 +51,7 @@ app.get(`/api/category/byType`,(req,res,next)=>{
 app.get('/api/category/getAll', (req, res, next) => {
 //Add conditionals here if you have any
 const sql = `
-  select "type"
+select "type"
   from "inventory"
   group by "type"
 
@@ -63,6 +63,7 @@ db.query(sql)
   res.status(201).json(categoryData);
 })
 .catch(err=>{
+  console.error(err)
   next(err);
 });
 })

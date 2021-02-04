@@ -1,6 +1,8 @@
 .nav-design {
   width: 100vh;
   height: 25vh;
+  position: fixed;
+  bottom: 0;
 }
 
 
@@ -17,4 +19,12 @@
 
 .icon-size {
   font-size: 4rem;
+}
+
+
+.column-left {
+
+  width: 30vh;
+  height: 100vh;
+  background-color: lightblue;
 }

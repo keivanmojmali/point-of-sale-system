@@ -44,7 +44,6 @@ export default class App extends React.Component {
         </div>
 
         <div className="row">
-          {/* {this.renderPage()} */}
           <Pos />
         </div>
 
