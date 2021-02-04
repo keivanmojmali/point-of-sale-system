@@ -10,11 +10,11 @@ export default class Orders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ordersArray = [];
+      ordersArray : []
     };
-    this.ordersArray = [];
     this.querryOrders = this.querryOrders.bind(this);
     this.renderArray = this.renderArray.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   };
   querryOrders(){
     // THIS IS THE GET METHOD - SAVES TO ORDERARRAY
@@ -27,7 +27,7 @@ export default class Orders extends React.Component {
     })
     .then(result.json())
     .then(result=>{
-      this.ordersArray = result.rows;
+      this.setState({ordersArray: result})
       //change this to state
     })
     .catch(err=>next(err));
@@ -64,14 +64,17 @@ export default class Orders extends React.Component {
     })
   };
   render(){
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          {this.renderArray()}
+
+    return(
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            {this.renderArray()}
+          </div>
         </div>
       </div>
-    </div>
 
+    )
 
 
   }

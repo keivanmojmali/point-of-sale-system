@@ -1,0 +1,20 @@
+.nav-design {
+  width: 100vh;
+  height: 25vh;
+}
+
+
+.full-screen{
+  width: 100vh;
+  height: 100vh;
+}
+
+.center-all {
+  justify-content: center;
+  align-content: center;
+}
+
+
+.icon-size {
+  font-size: 4rem;
+}
