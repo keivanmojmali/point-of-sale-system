@@ -37,14 +37,14 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <div className="container h-100">
+      <div className="container-fluid">
         <div className="row top-bar">
         </div>
         <div className="row">
             <Pos />
         </div>
         <div className="row">
-            <div className="col p-0 ">
+            <div className="col p-0 navbar-design">
             <Navbar />
             </div>
         </div>

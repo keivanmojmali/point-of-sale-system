@@ -3,7 +3,42 @@
 }
 
 .navbar-design {
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0%;
 
+}
+
+.parent-vh {
+  height: 90vh;
+
+}
+
+.product-scroll {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.category-design {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.thirty-basis {
+  flex-basis: 15% !important;
+}
+
+.top-bar {
+  background-color: lightgray;
+  height: 5vh;
+}
+
+.larger-padding{
+  padding: 2% 15% 10% 15%;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
 }

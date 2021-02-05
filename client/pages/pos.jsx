@@ -43,7 +43,7 @@ export default class Pos extends React.Component {
 renderData(){
   return this.state.categoryData.map((item)=>{
     return (
-      <div className="col smaller" onClick={() => { this.handleClick(item.itemId) }}>
+      <div className="col thirty-basis" onClick={() => { this.handleClick(item.itemId) }}>
         <img className="img-thumbnail" src={item.img} alt="Drink Image" />
         <h4>{item.name}</h4>
         <h5>{item.description}</h5>
@@ -56,10 +56,13 @@ renderData(){
 
   renderCategories() {
     return this.state.categories.map((category)=>{
+
       return (
-        <button className='btn btn-primary mt-2 mb-2' onClick={this.getCategoryData}>
-          <h5>{category.type}</h5>
-        </button>
+        <div className="col d-flex justify-content-center">
+          <button className='btn btn-primary mt-2 mb-2' onClick={this.getCategoryData}>
+            <h5>{category.type}</h5>
+          </button>
+        </div>
       )
     })
   }
@@ -74,12 +77,15 @@ renderData(){
   render(){
 
     return (
-      <div className="col h-100 bg-dark">
-        <div className="row h-100">
-          <div className="col-sm d-flex flex-column h-100">
+      <div className="col">
+        <div className="row category-design border-bottom">
+            <div className="col d-flex justify-content-center align-items-center">
+            <h4>Categories:</h4>
+            </div>
             {this.renderCategories()}
-          </div>
-          <div className="col">
+        </div>
+        <div className="row product-scroll">
+          <div className="col h-100 category-design larger-padding">
             {this.renderData()}
           </div>
         </div>
