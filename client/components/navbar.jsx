@@ -14,7 +14,7 @@ export default class Navbar extends React.Component {
     //THIS IS BUILT WE REG BOOTSTRAP NAV
 
     return(
-      <nav className="navbar align-items-center justify-content-around  bg-light navbar-light d-flex w-100">
+      <nav className="navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
         <a href="#pos" className="navbar-brand d-flex center-all" onClick={this.handleClick}>
           <i className="icon-size fas fa-mug-hot"></i>
         </a>

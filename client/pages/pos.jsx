@@ -33,21 +33,20 @@ export default class Pos extends React.Component {
             return result.json()
           })
           .then(data => {
-            console.log(data)
+
             this.setState({ categoryData: data })
           })
           .catch(err => {
-            console.error(err)
             next(err)})
 }
 
 renderData(){
   return this.state.categoryData.map((item)=>{
     return (
-      <div className="col" onClick={() => { this.handleClick(item.itemId) }}>
-        <img className="img-fluid" src={item.img} alt="Drink Image" />
+      <div className="col smaller" onClick={() => { this.handleClick(item.itemId) }}>
+        <img className="img-thumbnail" src={item.img} alt="Drink Image" />
         <h4>{item.name}</h4>
-        <h4>{item.description}</h4>
+        <h5>{item.description}</h5>
         <h6>{item.price}</h6>
         <h6>{item.stock}</h6>
       </div>
@@ -58,7 +57,7 @@ renderData(){
   renderCategories() {
     return this.state.categories.map((category)=>{
       return (
-        <button className='btn btn-primary btn-sm mt-2 mb-2 p-1' onClick={this.getCategoryData}>
+        <button className='btn btn-primary mt-2 mb-2' onClick={this.getCategoryData}>
           <h5>{category.type}</h5>
         </button>
       )
@@ -73,14 +72,14 @@ renderData(){
     this.getData();
   }
   render(){
-console.log(this.state)
+
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col d-flex flex-column column-left">
+      <div className="col h-100 bg-dark">
+        <div className="row h-100">
+          <div className="col-sm d-flex flex-column h-100">
             {this.renderCategories()}
           </div>
-          <div className="col right">
+          <div className="col">
             {this.renderData()}
           </div>
         </div>

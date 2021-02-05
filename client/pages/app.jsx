@@ -37,22 +37,18 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <div className="container full-screen">
-
+      <div className="container h-100">
+        <div className="row top-bar">
+        </div>
         <div className="row">
-          {/* this needs to have a bg color and the stlylings that you want */}
+            <Pos />
         </div>
-
         <div className="row">
-          <Pos />
+            <div className="col p-0 ">
+            <Navbar />
+            </div>
         </div>
-
-        <div className="row nav-design">
-          <Navbar />
-        </div>
-
       </div>
-
     )
   }
 }

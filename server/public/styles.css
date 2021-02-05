@@ -1,40 +1,9 @@
-.nav-design {
-  width: 100vh;
-  height: 25vh;
-  position: fixed;
-  bottom: 0;
-}
-
-
-.full-screen{
-  width: 100vh;
-  height: 100vh;
-}
-
-.center-all {
-  justify-content: center;
-  align-content: center;
-}
-
-
 .icon-size {
-  font-size: 4rem;
+  font-size: 250%;
 }
 
+.navbar-design {
+  position: absolute;
+  bottom: 0;
 
-.column-left {
-
-  width: 30vh;
-  height: 100vh;
-  background-color: lightgray;
-}
-
-
-.right {
-  overflow: scroll;
-  max-height: 100vh;
-}
-
-.width-sm {
-  width: 100%;
 }
