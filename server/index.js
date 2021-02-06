@@ -19,8 +19,8 @@ app.use(jsonMiddleware,staticMiddleware);
 
 
 //GET ALL OF THE INVENTORY IN A SPECIFIC CATEGORY
-app.get(`/api/category/byType`,(req,res,next)=>{
-  const type = req.body.type;
+app.get(`/api/category/byType/:type`,(req,res,next)=>{
+  const type = req.params.type;
   if (!type) {
     throw new ClientError(400,'Type is a required field')
   };
@@ -51,7 +51,7 @@ app.get(`/api/category/byType`,(req,res,next)=>{
 app.get('/api/category/getAll', (req, res, next) => {
 //Add conditionals here if you have any
 const sql = `
-  select "type"
+select "type"
   from "inventory"
   group by "type"
 
@@ -100,7 +100,6 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
         res.status(201).json(result.rows)
       }).catch(err => next(err))
   } else {
-    console.log('hererer')
     const sql = `
   insert into "orderItems" ("itemId","price")
   values ($1,$2)
@@ -110,24 +109,31 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
     db.query(sql, params)
       .then(result => {
         res.status(201).json(result.rows)
-      }).catch(err => next(err))
+      }).catch(err =>{
+
+        next(err)})
   }
 })
 
 
 //THIS WILL GET THE CURRENT ORDER ID
 // NEED TO PULL IN MAX!
-app.get('api/orderItems/orderId',(req,res,next)=>{
+app.get('/api/orderItems/orderId',(req,res,next)=>{
   //ADD ANY CONDITIONS HERE
   const sql = `
   select max("orderId")
-  from "orderItems"
+  from "orders"
   `;
   db.query(sql)
   .then(result=>{
-    res.status(201).json(result.rows)
+    if(result.rows[0].max === null) {
+      res.status(201).json([{max:1}])
+    }else {
+      res.status(201).json(result.rows)
+    }
   })
-  .catch(err=>next(err));
+  .catch(err=>{
+    next(err)});
 })
 
 
@@ -135,7 +141,7 @@ app.get('api/orderItems/orderId',(req,res,next)=>{
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
 app.patch(`/api/orders/complete`,(req,res,next)=>{
-  console.log('made it here');
+
   const orderId = parseInt(req.body.orderId,10);
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')

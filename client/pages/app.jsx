@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import Orders from './orders';
-import Pos from './pos';
+import TestOrdersPage from './TestOrderPage';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   route: parseRoute(window.location.hash),
-    // };
+    this.state = {
+      // route: parseRoute(window.location.hash),
+
+    };
     this.renderPage = this.renderPage.bind(this);
   };
   componentDidMount() {
@@ -37,23 +37,16 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <div className="container full-screen">
-
+      <div className="container-fluid h-100">
+        <div className="row h-100">
+            <TestOrdersPage />
+        </div>
         <div className="row">
-          {/* this needs to have a bg color and the stlylings that you want */}
+            <div className="col p-0 navbar-design">
+            <Navbar />
+            </div>
         </div>
-
-        <div className="row">
-          {/* {this.renderPage()} */}
-          <Pos />
-        </div>
-
-        <div className="row nav-design">
-          <Navbar />
-        </div>
-
       </div>
-
     )
   }
 }
