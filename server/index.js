@@ -75,6 +75,13 @@ app.post(`/api/postOrder`,(req,res,next)=>{
 
 
 
+
+
+
+
+
+
+
 //**Tested */
 //THIS WILL TAKE FROM INVENTORY AND POST INTO ORDERITEMS
 //WITH THE SAME ORDERiD
@@ -253,7 +260,7 @@ db.query(sql,params)
 
 
 //**TESTED */
-// THIS WILL PULL IN ALL OF THE ORDERS FROM THE ORDERS TABLE
+// THIS WILL GET IN ALL OF THE ORDERS FROM THE ORDERS TABLE
 app.get('/api/getAll/orders',(req,res,next)=>{
   const sql = `
   select *
