@@ -63,7 +63,6 @@ db.query(sql)
   res.status(201).json(categoryData);
 })
 .catch(err=>{
-  console.error(err)
   next(err);
 });
 })
@@ -101,7 +100,6 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
         res.status(201).json(result.rows)
       }).catch(err => next(err))
   } else {
-    console.log('hererer')
     const sql = `
   insert into "orderItems" ("itemId","price")
   values ($1,$2)
@@ -111,24 +109,31 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
     db.query(sql, params)
       .then(result => {
         res.status(201).json(result.rows)
-      }).catch(err => next(err))
+      }).catch(err =>{
+
+        next(err)})
   }
 })
 
 
 //THIS WILL GET THE CURRENT ORDER ID
 // NEED TO PULL IN MAX!
-app.get('api/orderItems/orderId',(req,res,next)=>{
+app.get('/api/orderItems/orderId',(req,res,next)=>{
   //ADD ANY CONDITIONS HERE
   const sql = `
   select max("orderId")
-  from "orderItems"
+  from "orders"
   `;
   db.query(sql)
   .then(result=>{
-    res.status(201).json(result.rows)
+    if(result.rows[0].max === null) {
+      res.status(201).json([{max:1}])
+    }else {
+      res.status(201).json(result.rows)
+    }
   })
-  .catch(err=>next(err));
+  .catch(err=>{
+    next(err)});
 })
 
 
@@ -136,7 +141,7 @@ app.get('api/orderItems/orderId',(req,res,next)=>{
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
 app.patch(`/api/orders/complete`,(req,res,next)=>{
-  console.log('made it here');
+
   const orderId = parseInt(req.body.orderId,10);
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
