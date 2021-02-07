@@ -13,17 +13,23 @@ export default class Inventory extends React.Component {
     };
     this.setTheState = this.setTheState.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.displayModal = this.displayModal.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.exitModal = this.exitModal.bind(this);
   }
   setTheState(object){
     this.setState(object);
   };
   handleClick(object){
-    console.log(object);
     this.setState({displayModal: true, editModal: object});
   };
+  exitModal(){
+    this.setState({displayModal:false, editModal:null});
+  }
   handleSubmit(){
     fetch('/api/category/updateItem',{
-      method: 'Patch',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -38,7 +44,9 @@ export default class Inventory extends React.Component {
     .catch(err=>console.error(err))
   }
   onChange(event){
-    this.setState({event.target.name: event.target.value});
+    let editModal = this.state.editModal;
+    editModal[event.target.name] = event.target.value;
+    this.setState({editModal});
   }
     displayModal(){
       if(this.state.displayModal === false) {
@@ -46,37 +54,45 @@ export default class Inventory extends React.Component {
       }
       console.log('aaaa',this.state.editModal)
       return (
-        <div className='col modal'>
-          <h4>{this.state.editModal.itemId}</h4>
-          <form action="#">
-            <div className="form-group">
-              <label htmlFor="type">Type</label>
-              <input className='form-control' type="text" name='type' value={this.state.editModal.type} onChange={this.onChange} />
+            <div className='change-modal'>
+              <div className="d-flex justify-content-between">
+              <h4>Item Id: {this.state.editModal.itemId}</h4>
+              <i className='fas fa-times text-light' onClick={this.exitModal}></i>
+              </div>
+              <form action="#" className='d-flex'>
+            <div className='m-1 p-1'>
+              <div className="form-group">
+                <label htmlFor="type">Type</label>
+                <input className='form-control' type="text" name='type' value={this.state.editModal.type} onChange={this.onChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" className='form-control' name='name' value={this.state.editModal.name} onChange={this.onChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">description</label>
+                <input type="text" className='form-control' name='description' value={this.state.editModal.description} onChange={this.onChange} />
+              </div>
+                </div>
+                <div className='m-1 p-1'>
+              <div className="form-group">
+                <label htmlFor="price">Price</label>
+                <input type="text" className='form-control' name='price' value={this.state.editModal.price} onChange={this.onChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="stock">Stock</label>
+                <input type="text" name='stock' className='form-control' value={this.state.editModal.stock} onChange={this.onChange} />
+              </div>
+              <div>
+                <button onClick={this.handleSubmit} type='submit' className=' btn btn-primary btn-lg'> Submit Changes</button>
+              </div>
+                </div>
+              </form>
             </div>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" className='form-control' name='name' value={this.state.editModal.name} onChange={this.onChange}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">description</label>
-              <input type="text" className='form-control' name='description' value={this.state.editModal.description} onChange={this.onChange}  />
-            </div>
-            <div className="form-group">
-              <label htmlFor="price">Price</label>
-              <input type="text" className='form-control' name='price' value={this.state.editModal.price} onChange={this.onChange}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="stock">Stock</label>
-              <input type="text" name='stock' className='form-control' value={this.state.editModal.stock} onChange={this.onChange}/>
-            </div>
-            <div>
-            <button onClick={this.handleSubmit} type='submit' className=' btn btn-primary btn-lg'> Submit Changes</button>
-            </div>
-          </form>
-        </div>
       )
     }
   render(){
+    console.log('the state',this.state)
     return (
       <div className="container-fluid h-100">
         <div className="row">
