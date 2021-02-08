@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
+import Inventory from './inventory';
 import TestOrdersPage from './TestOrderPage';
 
 export default class App extends React.Component {
@@ -28,7 +29,7 @@ export default class App extends React.Component {
     //     return <Pos />;
     //     break;
     //   case 'orders':
-    //     return <Orders />;
+    //     return <TestOrdersPage />;
     //     break;
     //   case 'inventory':
     //     return <Inventory />;
@@ -39,7 +40,7 @@ export default class App extends React.Component {
 
       <div className="container-fluid h-100">
         <div className="row h-100">
-            <TestOrdersPage />
+            <Inventory />
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">

@@ -57,3 +57,22 @@ body{
 .scroll {
   overflow-y: scroll;
 }
+
+.change-modal {
+  position: fixed !important;
+  background-color: gray;
+  top: 15%;
+  left: 10% !important;
+  margin-left: 23% !important;
+  color: white;
+  padding: 1%;
+  border: tomato thick 1px;
+}
+
+.display-none {
+  display: none;
+}
+
+.fas:hover{
+  color: red !important;
+}
