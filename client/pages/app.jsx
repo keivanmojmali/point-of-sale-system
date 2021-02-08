@@ -3,17 +3,19 @@ import Navbar from '../components/navbar';
 import Inventory from './inventory';
 import TestOrdersPage from './TestOrderPage';
 import Cart from './cart';
+import parseRoute from '../../server/parseRoute';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // route: parseRoute(window.location.hash),
+      route: parseRoute(window.location.hash),
 
     };
-    // this.renderPage = this.renderPage.bind(this);
+    this.renderPage = this.renderPage.bind(this);
   };
   componentDidMount() {
+    console.log('here')
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
@@ -24,24 +26,23 @@ export default class App extends React.Component {
   };
   renderPage() {
 
- //ONCE YOU FIGURE OUT THE HAS ROUTES THEN YOU CAN TEST THE ROUTE RETURNS
-    // switch(this.state.route){
-    //   case 'pos':
-    //     return <Pos />;
-    //     break;
-    //   case 'orders':
-    //     return <TestOrdersPage />;
-    //     break;
-    //   case 'inventory':
-    //     return <Inventory />;
-    // }
+    switch(this.state.route.path){
+      case 'cart':
+        return <Cart />;
+        break;
+      case 'pos':
+        return <TestOrdersPage />;
+        break;
+      case 'inventory':
+        return <Inventory />;
+    }
   };
   render() {
     return (
 
       <div className="container-fluid h-100">
         <div className="row h-100">
-            <Cart />
+            {this.renderPage()}
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">
