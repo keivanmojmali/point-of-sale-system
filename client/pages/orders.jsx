@@ -56,7 +56,7 @@ export default class Orders extends React.Component {
               {order.name}{order.count}
             </div>
             <div className="col">
-              <button onClick={()=>{this.handleClick(order.itemId)}} className='btn btn-sm btn-primary'>Complet</button>
+              <button onClick={()=>{this.handleClick(order.itemId)}} className='btn btn-sm btn-primary'>Complete</button>
             </div>
           </div>
         </div>

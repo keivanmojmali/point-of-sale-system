@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import Inventory from './inventory';
 import TestOrdersPage from './TestOrderPage';
+import Cart from './cart';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class App extends React.Component {
       // route: parseRoute(window.location.hash),
 
     };
-    this.renderPage = this.renderPage.bind(this);
+    // this.renderPage = this.renderPage.bind(this);
   };
   componentDidMount() {
     window.addEventListener('hashchange', () => {
@@ -40,7 +41,7 @@ export default class App extends React.Component {
 
       <div className="container-fluid h-100">
         <div className="row h-100">
-            <Inventory />
+            <Cart />
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">

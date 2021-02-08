@@ -76,3 +76,7 @@ body{
 .fas:hover{
   color: red !important;
 }
+
+.border-top {
+  border-top: 1pt solid black
+}

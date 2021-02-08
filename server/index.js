@@ -144,6 +144,52 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
 })
 
 
+
+
+
+//THIS WILL GET THE MAX ORDERID THEN IT WILL GET METHOD
+//EVERYTHING IN ORDER ITEMS WITH THAT ORDERID
+//THIS IS FOR THE CURRENT CUSTOMER THAT IS SHOPPING
+app.get('/api/currentOrder', (req, res, next) => {
+  //ADD ANY CONDITIONS HERE
+  const sql = `
+  select max("orderId")
+  from "orderItems"
+  `;
+  db.query(sql)
+    .then(result => {
+      if (result.rows[0].max === null) {
+        res.status(201).json([{ max: 1 }])
+      } else {
+        const sqlData = `
+          select *
+          from "orderItems"
+          join "inventory" using ("itemId")
+          where "orderId" = ${result.rows[0].max}
+          `;
+        db.query(sqlData)
+        .then(data=>{
+          res.status(201).json(data.rows)
+        })
+        .catch(err=>next(err))
+      }
+    })
+    .catch(err => {
+
+      next(err)
+    });
+})
+
+
+
+
+
+
+
+
+
+
+
 //**TESTED */
 //THIS WILL CHANGE THE ISCOMPLETE ON THE ORDERS TABLE TO DONE
 //WHEN THE USER CLICKS IT
