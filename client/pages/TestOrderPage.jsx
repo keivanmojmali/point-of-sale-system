@@ -9,7 +9,8 @@ export default class TestOrdersPage extends React.Component {
     super(props)
     this.state = {
       categories: null,
-      categoryData: null
+      categoryData: null,
+      currentOrderId: null
     }
     this.setTheState = this.setTheState.bind(this);
     this.handleClick = this.handleClick.bind(this)
