@@ -161,9 +161,6 @@ app.get('/api/currentOrder', (req, res, next) => {
       if (result.rows[0].max === null) {
         res.status(201).json([{ max: 1 }])
       } else {
-
-
-        console.log('HHHHHHHHH made it here', result.rows)
         const sqlData = `
           select *
           from "orderItems"
@@ -172,7 +169,6 @@ app.get('/api/currentOrder', (req, res, next) => {
           `;
         db.query(sqlData)
         .then(data=>{
-          console.log('GGGGGGGGGGGGGGG',data.rows);
           res.status(201).json(data.rows)
         })
         .catch(err=>next(err))

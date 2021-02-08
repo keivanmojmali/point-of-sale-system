@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
       <div className="container-fluid h-100">
         <div className="row h-100">
-            <Cart/>
+            <Cart />
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">
