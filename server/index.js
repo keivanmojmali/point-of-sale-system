@@ -222,12 +222,14 @@ app.patch(`/api/orders/complete`,(req,res,next)=>{
 //THIS HAPPENS AFTER CHECKOUT
 
 app.post(`/api/customers/orders`,(req,res,next)=>{
-const firstName = req.body.firstName;
-const lastName = req.body.lastName;
+const firstName = req.body.fName;
+const lastName = req.body.lName;
 const phone = req.body.phone.toString();
 const currentOrder = req.body.orderId;
-  let newCustomerId = null;
-  const isNotComplete = false;
+const total = req.body.total;
+const orderArray = req.body.orderArray;
+let newCustomerId = null;
+const isNotComplete = false;
 
 if(!lastName || !firstName || !phone){
   throw new ClientError(400,'firstName, lastName and phone are required fields')
@@ -246,13 +248,12 @@ const params = [firstName,lastName,phone];
 db.query(sql,params)
 .then(result=>{
   newCustomerId = result.rows[0].customerId;
-console.log('adadadada',newCustomerId)
   const postsql = `
-  insert into "orders" ("orderId","customerId","isComplete")
-  values ($1,$2,$3)
+  insert into "orders" ("orderId","customerId","isComplete","total","orderArray")
+  values ($1,$2,$3,$4,$5)
   returning *
   `;
-  const postParams = [currentOrder,newCustomerId,isNotComplete]
+  const postParams = [currentOrder,newCustomerId,isNotComplete,total,orderArray]
   db.query(postsql,postParams)
   .then(result=>{
     console.log('HHHH',result.rows)
@@ -311,6 +312,7 @@ app.get('/api/getAll/orders',(req,res,next)=>{
   const sql = `
   select *
   from "orders"
+  join "customers" using("customerId")
   `
   db.query(sql)
   .then(result=>{

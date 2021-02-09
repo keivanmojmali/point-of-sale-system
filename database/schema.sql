@@ -52,6 +52,8 @@ CREATE TABLE "orders" (
 	"customerId" integer NOT NULL,
 	"isComplete" BOOLEAN NOT NULL,
 	"userId" serial NOT NULL,
+	"total" integer NOT NULL,
+	"orderArray" VARCHAR[] NOT NULL,
 	CONSTRAINT "orders_pk" PRIMARY KEY ("orderId")
 ) WITH (
   OIDS=FALSE

@@ -8,11 +8,12 @@ export default class Cart extends React.Component {
     this.state = {
       total: null,
       currentOrderArray: null,
-      checkout: false
+      checkout: false,
     };
     this.queryOrder = this.queryOrder.bind(this)
     this.renderPage = this.renderPage.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   queryOrder(){
     fetch('/api/currentOrder')
@@ -38,17 +39,51 @@ export default class Cart extends React.Component {
   handleCheckout() {
     this.setState({ checkout: true })
   }
+
+
+
+  handleSubmit(order) {
+
+    let sendTo = order;
+    sendTo.orderId = this.state.currentOrderArray[0].orderId;
+    sendTo.total = this.state.total;
+    sendTo.orderArray = this.state.currentOrderArray;
+    this.setState({checkout: false});
+    fetch('/api/customers/orders',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(sendTo)
+    })
+    .then(result =>{
+      return result.json();
+    })
+    .then(data=>{
+      console.log(data);
+    })
+    .catch(err=>{
+      console.error(err)
+    })
+
+  }
+
+
+
+
+
+
   renderPage(){
     if(this.state.checkout === false){
-      console.log('if hhhhh');
+
       return <ItemizedCart
 
       currentOrderArray={this.state.currentOrderArray}
       handleCheckout={this.handleCheckout}
       />
     } else {
-      console.log('else aaaaaa');
-      return <Payment />
+
+      return <Payment handleSubmit={this.handleSubmit} />
     }
   }
   checkoutButton(){
