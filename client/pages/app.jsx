@@ -6,6 +6,7 @@ import Cart from './cart';
 import parseRoute from '../../server/parseRoute';
 import Orders from './orders';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
