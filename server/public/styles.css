@@ -80,3 +80,7 @@ body{
 .border-top {
   border-top: 1pt solid black
 }
+
+.border-one{
+  border: 1px solid black;
+}

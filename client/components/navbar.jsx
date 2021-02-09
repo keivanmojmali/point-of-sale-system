@@ -18,7 +18,7 @@ export default class Navbar extends React.Component {
         <a href="#pos" className="navbar-brand d-flex center-all" onClick={this.handleClick}>
           <i className="icon-size fas fa-mug-hot"></i>
         </a>
-        <a href="#order" className="navbar-brand d-flex center-all" onClick={this.handleClick}>
+        <a href="#cart" className="navbar-brand d-flex center-all" onClick={this.handleClick}>
           <i className='icon-size fas fa-shopping-cart'></i>
         </a>
         <a href="#inventory" className="navbar-brand d-flex center-all" onClick={this.handleClick}>
