@@ -14,6 +14,7 @@ export default class Cart extends React.Component {
     this.renderPage = this.renderPage.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRemove = this.handleRemove.bind(this)
   }
   queryOrder(){
     let localStorageId = JSON.parse(localStorage.getItem('currentId'));
@@ -44,7 +45,29 @@ export default class Cart extends React.Component {
   handleCheckout() {
     this.setState({ checkout: true })
   }
+  handleRemove(orderItemsId){
+    fetch('/api/deleteItem',{
+      method:'PATCH',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'orderItemsId': orderItemsId })
+    })
+    .then(result=>{
+      return result.json()
+    })
+    .then(data=>{
+      let currentOrderArray = [...this.state.currentOrderArray].filter((order)=>{
+        return order.orderItemsId !== orderItemsId;
+      })
+      this.setState({currentOrderArray})
+    })
+    .catch(err=>{
+      console.error(err)
+    })
 
+
+  }
 
 
   handleSubmit(order) {
@@ -64,7 +87,7 @@ export default class Cart extends React.Component {
       return result.json();
     })
     .then(data=>{
-      console.log('HAHAHAHAH',data);
+      console.log(data)
     })
     .catch(err=>{
       console.error(err)
@@ -74,11 +97,12 @@ export default class Cart extends React.Component {
 
 
   renderPage(){
+    console.log('HERE THE CART',this.state.currentOrderArray)
     console.log(this.state.currentOrderArray)
     if(this.state.checkout === false){
 
       return <ItemizedCart
-
+      handleRemove={this,this.handleRemove}
       currentOrderArray={this.state.currentOrderArray}
       handleCheckout={this.handleCheckout}
       />

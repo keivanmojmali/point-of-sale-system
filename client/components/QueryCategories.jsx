@@ -23,19 +23,6 @@ export default class QueryCategories extends React.Component {
       .catch(err=>{
         console.error(err)
       })
-
-    // fetch('/api/orderItems/orderId')
-    // .then(result=>{
-    //   return result.json()
-    // })
-    // .then(data=>{
-    //   let newOrderId = data[0].max+1;
-    //   this.props.setTheState({'currentOrderId': newOrderId})
-    //   localStorage.setItem('currentId',JSON.stringify(newOrderId));
-
-    // }).catch(err=>{
-    //   console.error(err)
-    // })
   }
   renderCategories() {
 
@@ -44,7 +31,7 @@ export default class QueryCategories extends React.Component {
     }
     return this.props.categories.map((category)=>{
       return (
-        <div className="col d-flex justify-content-center">
+        <div className="col d-flex justify-content-center" key={category.type}>
           <button className='btn btn-primary mt-2 mb-2' onClick={this.getCategoryData}>
             <h5>{category.type}</h5>
           </button>
@@ -53,7 +40,6 @@ export default class QueryCategories extends React.Component {
     })
   }
   getCategoryData(event) {
-    // this.setState({ currentCategory: event.target.textContent })
     let cat = event.target.textContent;
     fetch(`api/category/byType/${cat}`)
       .then(result => {

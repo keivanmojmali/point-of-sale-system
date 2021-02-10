@@ -6,7 +6,7 @@ export default class ItemizedCart extends React.Component {
     this.state = {
 
     }
- this.renderOrder = this.renderOrder.bind(this);
+     this.renderOrder = this.renderOrder.bind(this);
   }
   renderOrder() {
     if (this.props.currentOrderArray === null) {
@@ -14,7 +14,7 @@ export default class ItemizedCart extends React.Component {
     }
     return this.props.currentOrderArray.map((item) => {
       return (
-        <div className="col">
+        <div className="col" key={item.orderItemsId}>
           <div className="row d-flex justify-content-between align-items-center
              border-bottom  ">
             <div className="col">
@@ -22,7 +22,7 @@ export default class ItemizedCart extends React.Component {
             </div>
             <div className="col ml-3 d-flex align-items-center justify-content-end">
               <h6>${item.price}</h6>
-              <i className=' ml-4 fas fa-minus'></i>
+              <i onClick={()=>{this.props.handleRemove(item.orderItemsId)}} className=' ml-4 fas fa-minus'></i>
             </div>
           </div>
         </div>

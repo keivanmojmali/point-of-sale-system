@@ -15,7 +15,7 @@ export default class RenderInventory extends React.Component {
         rowClass = 'bg-dark text-light'
       }
       return (
-        <tr className={rowClass}>
+        <tr className={rowClass} key={row.itemId}>
           <td>
             <button
             onClick={()=>{this.props.handleClick(row)}}

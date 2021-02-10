@@ -12,7 +12,7 @@ renderData(){
   }
   return this.props.categoryData.map((item) => {
     return (
-      <div className="col thirty-basis" onClick={() => { this.handleClick(item.itemId, item.price) }}>
+      <div key={item.itemId} className="col thirty-basis" onClick={() => { this.handleClick(item.itemId, item.price) }}>
         <img className="img-thumbnail" src={item.img} alt="Drink Image" />
         <h4>{item.name}</h4>
         <h6>{item.description}</h6>

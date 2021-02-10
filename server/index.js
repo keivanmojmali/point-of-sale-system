@@ -209,8 +209,29 @@ app.get('/api/currentOrder/:localStorageId', (req, res, next) => {
 })
 
 
+// this will take in an order id and delete an item in the ortderitems
+ app.patch('/api/deleteItem',(req,res,next)=>{
+  const orderItemsId = parseFloat(req.body.orderItemsId,10);
+  if(!Number.isInteger(orderItemsId) || orderItemsId === undefined) {
+    throw new ClientError(401,'Order Items Id is a required field')
+  }
+  const sql = `
+  delete from "orderItems"
+  where "orderItemsId" = $1
+  returning *
+  `
+  const params = [orderItemsId]
+  db.query(sql,params)
+  .then(result=>{
+    res.status(201).json(result.rows)
+    console.log(result.rows)
+  })
+  .catch(err=>{
+    console.error(err)
+    next(err)
+  })
 
-
+ })
 
 
 
