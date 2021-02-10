@@ -29,7 +29,7 @@ export default class QueryCategories extends React.Component {
       return result.json()
     })
     .then(data=>{
-      console.log('query results',data)
+
       let newOrderId = data[0].max;
       this.props.setTheState({'currentOrderId': data[0].max})
 

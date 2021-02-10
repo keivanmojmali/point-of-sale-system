@@ -89,13 +89,13 @@ export default class Orders extends React.Component {
       return result.json()
     })
     .then(data=>{
-      console.log('aaaa',data);
+
       this.setState({orders: data})
     })
     .catch(err=>next(err))
   }
   render(){
-    console.log('AAAAAAAAA',this.state.orders)
+
 return (
 
   <div className="containier-fluid p-5 m-3 w-100 scroll">

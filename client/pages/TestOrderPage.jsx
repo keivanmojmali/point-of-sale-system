@@ -40,7 +40,7 @@ export default class TestOrdersPage extends React.Component {
     this.setState(input);
   }
   render() {
-console.log('orderId',this.state.currentOrderId)
+
     return (
 
       <div className="container-fluid h-100">

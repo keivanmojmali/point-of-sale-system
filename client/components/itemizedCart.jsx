@@ -30,7 +30,7 @@ export default class ItemizedCart extends React.Component {
     })
   }
   render() {
-    console.log(this.props)
+
     return (
       <div className="container d-flex flex-column justify-content-between pt-4">
         <div className="row">
