@@ -35,12 +35,15 @@ export default class TestOrdersPage extends React.Component {
         next(err)})
   }
   setTheState(input){
-
-
     this.setState(input);
+
+  }
+  componentDidMount(){
+    let currentOrderId = JSON.parse(localStorage.getItem('currentId'));
+    this.setState( {currentOrderId})
   }
   render() {
-console.log('orderId',this.state.currentOrderId)
+console.log('THIS IS WHERE WE ARE AT',this.state.currentOrderId)
     return (
 
       <div className="container-fluid h-100">

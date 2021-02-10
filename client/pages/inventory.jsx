@@ -52,7 +52,6 @@ export default class Inventory extends React.Component {
       if(this.state.displayModal === false) {
         return;
       }
-      console.log('aaaa',this.state.editModal)
       return (
             <div className='change-modal'>
               <div className="d-flex justify-content-between">
@@ -92,7 +91,7 @@ export default class Inventory extends React.Component {
       )
     }
   render(){
-    console.log('the state',this.state)
+
     return (
       <div className="container-fluid h-100">
         <div className="row">

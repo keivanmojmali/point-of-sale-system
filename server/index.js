@@ -135,10 +135,10 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
   `;
   db.query(sql)
   .then(result=>{
-    console.log('HHHHHHHHHHHH',result.rows)
     if(result.rows[0].max === null) {
       res.status(201).json([{max:1}])
     }else {
+
       res.status(201).json(result.rows)
     }
   })
@@ -154,34 +154,58 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
 //THIS WILL GET THE MAX ORDERID THEN IT WILL GET METHOD
 //EVERYTHING IN ORDER ITEMS WITH THAT ORDERID
 //THIS IS FOR THE CURRENT CUSTOMER THAT IS SHOPPING
-app.get('/api/currentOrder', (req, res, next) => {
+app.get('/api/currentOrder/:localStorageId', (req, res, next) => {
   //ADD ANY CONDITIONS HERE
+  let orderId = req.params.localStorageId;
+  if(orderId === undefined || orderId.length < 0){
+    throw new ClientError(400,'Local Storage Id is a required field')
+  };
   const sql = `
-  select max("orderId")
+  select *
   from "orderItems"
+  join "inventory" using ("itemId")
+  where "orderId" = $1
   `;
-  db.query(sql)
-    .then(result => {
-      if (result.rows[0].max === null) {
-        res.status(201).json([{ max: 1 }])
-      } else {
-        const sqlData = `
-          select *
-          from "orderItems"
-          join "inventory" using ("itemId")
-          where "orderId" = ${result.rows[0].max}
-          `;
-        db.query(sqlData)
-        .then(data=>{
-          res.status(201).json(data.rows)
-        })
-        .catch(err=>next(err))
-      }
-    })
-    .catch(err => {
+  const params = [orderId]
+  db.query(sql,params)
+  .then(result=>{
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>{
+    next(err)
+  })
 
-      next(err)
-    });
+
+  // const sql = `
+  // select max("orderId")
+  // from "orderItems"
+  // `;
+  // db.query(sql)
+  //   .then(result => {
+  //     if (result.rows[0].max === null) {
+  //       res.status(201).json([{ max: 1 }])
+  //     } else {
+
+  //       const sqlData = `
+  //         select *
+  //         from "orderItems"
+  //         join "inventory" using ("itemId")
+  //         where "orderId" = ${result.rows[0].max}
+  //         `;
+  //       db.query(sqlData)
+  //       .then(data=>{
+  //         res.status(201).json(data.rows)
+  //       })
+  //       .catch(err=>next(err))
+  //     }
+  //   })
+  //   .catch(err => {
+
+  //     next(err)
+  //   });
+
+
+
 })
 
 
@@ -203,7 +227,7 @@ app.patch(`/api/orders/complete`,(req,res,next)=>{
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
   }
-  console.log('the order ID',orderId)
+
   const sql = `
   update "orders"
   set "isComplete" = 'true'
@@ -240,7 +264,7 @@ if(!lastName || !firstName || !phone){
   throw new ClientError(400,'firstName, lastName and phone are required fields')
 }
 if(phone.length < 7){
-  console.log('made it here')
+
   throw new ClientError(401,'Phone must be at least 7 numbers in length')
 
 }
@@ -261,7 +285,7 @@ db.query(sql,params)
   const postParams = [currentOrder,newCustomerId,isNotComplete,total,orderArray]
   db.query(postsql,postParams)
   .then(result=>{
-    console.log('HHHH',result.rows)
+
     res.status(201).json(result.rows)
   }).catch(err=>{
     console.error(err)
@@ -321,7 +345,7 @@ app.get('/api/getAll/orders',(req,res,next)=>{
   `
   db.query(sql)
   .then(result=>{
-    console.log('THE RESULT OF THE GET',result.rows)
+
     res.status(201).json(result.rows)
   })
   .catch(err=>next(err))

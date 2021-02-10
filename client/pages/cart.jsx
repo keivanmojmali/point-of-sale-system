@@ -16,7 +16,8 @@ export default class Cart extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   queryOrder(){
-    fetch('/api/currentOrder')
+    let localStorageId = JSON.parse(localStorage.getItem('currentId'));
+    fetch(`/api/currentOrder/${localStorageId}`)
     .then(result=>{
       return result.json()
     })
@@ -51,7 +52,7 @@ export default class Cart extends React.Component {
     sendTo.orderId = this.state.currentOrderArray[0].orderId;
     sendTo.total = this.state.total;
     sendTo.orderArray = this.state.currentOrderArray;
-    this.setState({checkout: false});
+    this.setState({ checkout: false});
     fetch('/api/customers/orders',{
       method: 'POST',
       headers: {
@@ -63,7 +64,7 @@ export default class Cart extends React.Component {
       return result.json();
     })
     .then(data=>{
-      console.log('data',data);
+      console.log('HAHAHAHAH',data);
     })
     .catch(err=>{
       console.error(err)
@@ -73,6 +74,7 @@ export default class Cart extends React.Component {
 
 
   renderPage(){
+    console.log(this.state.currentOrderArray)
     if(this.state.checkout === false){
 
       return <ItemizedCart

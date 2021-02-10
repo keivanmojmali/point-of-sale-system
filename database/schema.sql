@@ -51,7 +51,7 @@ CREATE TABLE "orders" (
 	"total" integer NOT NULL,
 	"orderArray" varchar[] NOT NULL,
 	"openOrderId" serial NOT NULL,
-	"orderId" integer NOT NULL,
+	"orderId" serial NOT NULL,
 	CONSTRAINT "orders_pk" PRIMARY KEY ("openOrderId")
 ) WITH (
   OIDS=FALSE

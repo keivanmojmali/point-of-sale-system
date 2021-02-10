@@ -45,8 +45,10 @@ export default class Payment extends React.Component {
             className='form-control' placeholder=' Phone Number ' />
         </div>
         <div className="form-group border-top d-flex justify-content-end">
-          <button onClick={()=>{this.props.handleSubmit(this.state.user)}} className='btn btn-lg btn-primary mt-3' href='#orders'>
-            Submit
+            <button onClick={() => { this.props.handleSubmit(this.state.user)
+              window.location.href='#orders'
+            }} className='btn btn-lg btn-primary mt-3'>
+              Submit
           </button>
         </div>
       </form>

@@ -24,18 +24,18 @@ export default class QueryCategories extends React.Component {
         console.error(err)
       })
 
-    fetch('/api/orderItems/orderId')
-    .then(result=>{
-      return result.json()
-    })
-    .then(data=>{
-      console.log('query results',data)
-      let newOrderId = data[0].max;
-      this.props.setTheState({'currentOrderId': data[0].max})
+    // fetch('/api/orderItems/orderId')
+    // .then(result=>{
+    //   return result.json()
+    // })
+    // .then(data=>{
+    //   let newOrderId = data[0].max+1;
+    //   this.props.setTheState({'currentOrderId': newOrderId})
+    //   localStorage.setItem('currentId',JSON.stringify(newOrderId));
 
-    }).catch(err=>{
-      console.error(err)
-    })
+    // }).catch(err=>{
+    //   console.error(err)
+    // })
   }
   renderCategories() {
 
@@ -72,7 +72,6 @@ export default class QueryCategories extends React.Component {
   }
 
   render(){
-
     return (
       <div className="col h-100 bg-dark text-light">
         <div className="row category-design border-bottom ">
