@@ -72,7 +72,7 @@ export default class QueryCategories extends React.Component {
   }
 
   render(){
-
+console.log('THE CURRENT ORDER ID',this.state.currentOrderId)
     return (
       <div className="col h-100 bg-dark text-light">
         <div className="row category-design border-bottom ">

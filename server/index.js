@@ -135,7 +135,7 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
   `;
   db.query(sql)
   .then(result=>{
-    console.log('HHHHHHHHHHHH',result.rows)
+
     if(result.rows[0].max === null) {
       res.status(201).json([{max:1}])
     }else {
@@ -203,7 +203,7 @@ app.patch(`/api/orders/complete`,(req,res,next)=>{
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
   }
-  console.log('the order ID',orderId)
+
   const sql = `
   update "orders"
   set "isComplete" = 'true'
@@ -240,7 +240,7 @@ if(!lastName || !firstName || !phone){
   throw new ClientError(400,'firstName, lastName and phone are required fields')
 }
 if(phone.length < 7){
-  console.log('made it here')
+
   throw new ClientError(401,'Phone must be at least 7 numbers in length')
 
 }
@@ -261,7 +261,7 @@ db.query(sql,params)
   const postParams = [currentOrder,newCustomerId,isNotComplete,total,orderArray]
   db.query(postsql,postParams)
   .then(result=>{
-    console.log('HHHH',result.rows)
+
     res.status(201).json(result.rows)
   }).catch(err=>{
     console.error(err)
@@ -321,7 +321,7 @@ app.get('/api/getAll/orders',(req,res,next)=>{
   `
   db.query(sql)
   .then(result=>{
-    console.log('THE RESULT OF THE GET',result.rows)
+
     res.status(201).json(result.rows)
   })
   .catch(err=>next(err))
