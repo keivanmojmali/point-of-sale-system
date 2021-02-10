@@ -61,10 +61,13 @@ CREATE TABLE "orders" (
 
 CREATE TABLE "orderItems" (
 	"orderId" integer NOT NULL,
-	"itemId" integer NOT NULL
+	"itemId" integer NOT NULL,
+	"orderItemsId" serial NOT NULL,
+	CONSTRAINT "orderItems_pk" PRIMARY KEY ("orderItemsId")
 ) WITH (
   OIDS=FALSE
 );
+
 
 
 
