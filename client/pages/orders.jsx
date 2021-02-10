@@ -1,81 +1,107 @@
 import React from 'react';
 
-
-//once tyhe checkout button is set or the reset button - it needs to add 1 to the ordercount in thr system
-// that is how we are going to keep track of the order count
-
-
-
 export default class Orders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ordersArray : []
-    };
-    this.querryOrders = this.querryOrders.bind(this);
-    this.renderArray = this.renderArray.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+      orders: null
+    }
+  this.renderOrders = this.renderOrders.bind(this);
+  this.orderLi = this.orderLi.bind(this);
+  this.handleClick = this.handleClick.bind(this);
   };
-  querryOrders(){
-    // THIS IS THE GET METHOD - SAVES TO ORDERARRAY
-    //IF DATA DOES NOT PROPERLY RENDER - THEN ASYNC NEEDS
-    //TO BE HANDLED THEN DATA RETURNED
-    //DOUBLE CHECK METHOD / THIS HAS NO BODY
-
-    fetch('/api/orderItems/', {
-      method: 'GET',
+  orderLi(orderArray) {
+    return orderArray.map((item)=>{
+      let parsed = JSON.parse(item);
+      return <li>
+        {parsed.name}
+      </li>
     })
-    .then(result.json())
+  };
+  handleClick(itemId){
+    let fetchBody = {"orderId":itemId};
+    fetch('/api/orders/complete',{
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(fetchBody)
+    })
     .then(result=>{
-      this.setState({ordersArray: result})
-      //change this to state
+      return result.json()
     })
-    .catch(err=>next(err));
+    .then(data=>{
+      fetch('/api/getAll/orders')
+      .then(result=>result.json())
+      .then(data=>{
+        this.setState({orders: data})
+      })
+      .catch(err=>console.error(err))
+    })
+    .catch(err=>console.error(err))
+  }
+  renderOrders(){
+    if(this.state.orders === null){
+      return;
+    }
+    return this.state.orders.map((order)=>{
+      return (
+        <div className="row border-one mb-2">
+          <div className="col">
+            <div className="row bg-dark text-light">
+              <div className="col">
+                {order.firstName} {order.lastName}
+              </div>
+              <div className="col">
+                <div className="row">
+                  <div className="col text-right">
+                    Order #{order.orderId}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col text-right">
+                    Total: ${order.total}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  };
-  handleClick(orderId){
-    //take the order id and then change it to the past orders table
+            <div className="row">
+              <div className="col">
+                <h4>Order:</h4>
+                <ul>
+                  {this.orderLi(order.orderArray)}
+                </ul>
+              </div>
+              <div className="col pt-2 text-right">
+                <button onClick={()=>{this.handleClick(order.orderId)}} className='btn btn-sm btn-primary'>Complete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    })
 
   };
   componentDidMount(){
-    this.querryOrders();
-  }
-  renderArray(){
-    this.state.ordersArray.map((order)=>{
-      <div className="row">
-        <div className="col">
-          <div className="row">
-            <div className="col">
-              <h6>{order.customerName}</h6>
-              //you need to add the cusomter name here - somehow when you querry
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h6>Order:</h6>
-              {order.name}{order.count}
-            </div>
-            <div className="col">
-              <button onClick={()=>{this.handleClick(order.itemId)}} className='btn btn-sm btn-primary'>Complete</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    fetch('/api/getAll/orders')
+    .then(result=>{
+      return result.json()
     })
-  };
-  render(){
-
-    return(
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            {this.renderArray()}
-          </div>
-        </div>
-      </div>
-
-    )
-
-
+    .then(data=>{
+      console.log('aaaa',data);
+      this.setState({orders: data})
+    })
+    .catch(err=>next(err))
   }
+  render(){
+    console.log('AAAAAAAAA',this.state.orders)
+return (
+
+  <div className="containier-fluid p-5 m-3 w-100 scroll">
+    {this.renderOrders()}
+  </div>
+)
+  }
+
 }

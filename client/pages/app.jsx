@@ -4,6 +4,8 @@ import Inventory from './inventory';
 import TestOrdersPage from './TestOrderPage';
 import Cart from './cart';
 import parseRoute from '../../server/parseRoute';
+import Orders from './orders';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +17,6 @@ export default class App extends React.Component {
     this.renderPage = this.renderPage.bind(this);
   };
   componentDidMount() {
-    console.log('here')
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
@@ -25,7 +26,6 @@ export default class App extends React.Component {
     //this is where you would set and store them
   };
   renderPage() {
-
     switch(this.state.route.path){
       case 'cart':
         return <Cart />;
@@ -35,6 +35,10 @@ export default class App extends React.Component {
         break;
       case 'inventory':
         return <Inventory />;
+        break;
+        case 'orders':
+          return <Orders />
+          break;
     }
   };
   render() {
