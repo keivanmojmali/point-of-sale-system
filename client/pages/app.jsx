@@ -10,11 +10,11 @@ import Orders from './orders';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   route: parseRoute(window.location.hash),
+    this.state = {
+      route: parseRoute(window.location.hash),
 
-    // };
-    // this.renderPage = this.renderPage.bind(this);
+    };
+    this.renderPage = this.renderPage.bind(this);
   };
   componentDidMount() {
     window.addEventListener('hashchange', () => {
@@ -25,26 +25,28 @@ export default class App extends React.Component {
     //if you want to add log in and log out tokens -
     //this is where you would set and store them
   };
-  // renderPage() {
-
-  //   switch(this.state.route.path){
-  //     case 'cart':
-  //       return <Cart />;
-  //       break;
-  //     case 'pos':
-  //       return <TestOrdersPage />;
-  //       break;
-  //     case 'inventory':
-  //       return <Inventory />;
-  //   }
-  // };
+  renderPage() {
+    switch(this.state.route.path){
+      case 'cart':
+        return <Cart />;
+        break;
+      case 'pos':
+        return <TestOrdersPage />;
+        break;
+      case 'inventory':
+        return <Inventory />;
+        break;
+        case 'orders':
+          return <Orders />
+          break;
+    }
+  };
   render() {
     return (
 
       <div className="container-fluid h-100">
         <div className="row h-100">
-            {/* {this.renderPage()} */}
-            <Orders />
+            {this.renderPage()}
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">

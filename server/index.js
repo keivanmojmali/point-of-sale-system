@@ -97,27 +97,29 @@ app.post(`/api/addTo/openOrders`,(req,res,next)=>{
   if(req.body.orderId){
     const orderId = parseInt(req.body.orderId, 10);
     const sql = `
-  insert into "orderItems" ("itemId","orderId","price")
-  values ($1,$2,$3)
-  returning *
-  `;
-    const params = [itemId, orderId, price]
-    db.query(sql, params)
-      .then(result => {
-        res.status(201).json(result.rows)
-      }).catch(err => next(err))
-  } else {
-    const sql = `
-  insert into "orderItems" ("itemId","price")
+  insert into "orderItems" ("itemId","orderId")
   values ($1,$2)
   returning *
   `;
-    const params = [itemId, price]
+    const params = [itemId, orderId]
+    db.query(sql, params)
+      .then(result => {
+        res.status(201).json(result.rows)
+      }).catch(err => {
+        console.error(err)
+        next(err)})
+  } else {
+    const sql = `
+  insert into "orderItems" ("itemId","orderId")
+  values ($1,$2)
+  returning *
+  `;
+    const params = [itemId,orderId]
     db.query(sql, params)
       .then(result => {
         res.status(201).json(result.rows)
       }).catch(err =>{
-
+        console.error(err)
         next(err)})
   }
 })
@@ -133,6 +135,7 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
   `;
   db.query(sql)
   .then(result=>{
+    console.log('HHHHHHHHHHHH',result.rows)
     if(result.rows[0].max === null) {
       res.status(201).json([{max:1}])
     }else {
@@ -140,6 +143,7 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
     }
   })
   .catch(err=>{
+    console.error(err)
     next(err)});
 })
 
@@ -199,6 +203,7 @@ app.patch(`/api/orders/complete`,(req,res,next)=>{
   if(!Number.isInteger(orderId) || orderId < 0){
     throw new ClientError(400,'OrderId must be a positive integer')
   }
+  console.log('the order ID',orderId)
   const sql = `
   update "orders"
   set "isComplete" = 'true'
@@ -261,7 +266,6 @@ db.query(sql,params)
   }).catch(err=>{
     console.error(err)
     next(err)})
-  res.status(201).json(result.rows)
 })
 .catch(err=>{
   console.error(err)
@@ -313,9 +317,11 @@ app.get('/api/getAll/orders',(req,res,next)=>{
   select *
   from "orders"
   join "customers" using("customerId")
+  where "isComplete" = 'false'
   `
   db.query(sql)
   .then(result=>{
+    console.log('THE RESULT OF THE GET',result.rows)
     res.status(201).json(result.rows)
   })
   .catch(err=>next(err))

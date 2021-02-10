@@ -27,7 +27,11 @@ export default class Cart extends React.Component {
         return accumulator + currentValue.price;
       }
       let total = this.state.currentOrderArray.reduce(reducerMethod, 0);
-      this.setState({total});
+      if(!Number.isInteger(total) || total < 0) {
+        this.setState({ total: 0 });
+      } else {
+        this.setState({ total });
+      }
     })
     .catch(err=>{
       console.error(err)
@@ -43,7 +47,6 @@ export default class Cart extends React.Component {
 
 
   handleSubmit(order) {
-
     let sendTo = order;
     sendTo.orderId = this.state.currentOrderArray[0].orderId;
     sendTo.total = this.state.total;
@@ -60,17 +63,13 @@ export default class Cart extends React.Component {
       return result.json();
     })
     .then(data=>{
-      console.log(data);
+      console.log('data',data);
     })
     .catch(err=>{
       console.error(err)
     })
 
   }
-
-
-
-
 
 
   renderPage(){
@@ -97,7 +96,6 @@ export default class Cart extends React.Component {
     }
   }
   render() {
-
     return (
       <div className="container-fluid d-flex flex-column justify-content-between">
         <div className="row">

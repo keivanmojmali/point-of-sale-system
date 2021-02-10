@@ -16,7 +16,7 @@ export default class TestOrdersPage extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   };
   handleClick(itemId, price) {
-    let sendTo = { itemId, price, orderId: this.state.currentOrderId };
+    let sendTo = { itemId, orderId: this.state.currentOrderId };
     fetch('/api/addTo/openOrders', {
       method: 'POST',
       headers: {
@@ -30,7 +30,9 @@ export default class TestOrdersPage extends React.Component {
       .then(data => {
         console.log(data)
       })
-      .catch(err => next(err))
+      .catch(err => {
+        console.error(err)
+        next(err)})
   }
   setTheState(input){
 
@@ -38,7 +40,7 @@ export default class TestOrdersPage extends React.Component {
     this.setState(input);
   }
   render() {
-
+console.log('orderId',this.state.currentOrderId)
     return (
 
       <div className="container-fluid h-100">
