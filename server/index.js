@@ -135,10 +135,10 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
   `;
   db.query(sql)
   .then(result=>{
-
     if(result.rows[0].max === null) {
       res.status(201).json([{max:1}])
     }else {
+
       res.status(201).json(result.rows)
     }
   })
@@ -154,34 +154,58 @@ app.get('/api/orderItems/orderId',(req,res,next)=>{
 //THIS WILL GET THE MAX ORDERID THEN IT WILL GET METHOD
 //EVERYTHING IN ORDER ITEMS WITH THAT ORDERID
 //THIS IS FOR THE CURRENT CUSTOMER THAT IS SHOPPING
-app.get('/api/currentOrder', (req, res, next) => {
+app.get('/api/currentOrder/:localStorageId', (req, res, next) => {
   //ADD ANY CONDITIONS HERE
+  let orderId = req.params.localStorageId;
+  if(orderId === undefined || orderId.length < 0){
+    throw new ClientError(400,'Local Storage Id is a required field')
+  };
   const sql = `
-  select max("orderId")
+  select *
   from "orderItems"
+  join "inventory" using ("itemId")
+  where "orderId" = $1
   `;
-  db.query(sql)
-    .then(result => {
-      if (result.rows[0].max === null) {
-        res.status(201).json([{ max: 1 }])
-      } else {
-        const sqlData = `
-          select *
-          from "orderItems"
-          join "inventory" using ("itemId")
-          where "orderId" = ${result.rows[0].max}
-          `;
-        db.query(sqlData)
-        .then(data=>{
-          res.status(201).json(data.rows)
-        })
-        .catch(err=>next(err))
-      }
-    })
-    .catch(err => {
+  const params = [orderId]
+  db.query(sql,params)
+  .then(result=>{
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>{
+    next(err)
+  })
 
-      next(err)
-    });
+
+  // const sql = `
+  // select max("orderId")
+  // from "orderItems"
+  // `;
+  // db.query(sql)
+  //   .then(result => {
+  //     if (result.rows[0].max === null) {
+  //       res.status(201).json([{ max: 1 }])
+  //     } else {
+
+  //       const sqlData = `
+  //         select *
+  //         from "orderItems"
+  //         join "inventory" using ("itemId")
+  //         where "orderId" = ${result.rows[0].max}
+  //         `;
+  //       db.query(sqlData)
+  //       .then(data=>{
+  //         res.status(201).json(data.rows)
+  //       })
+  //       .catch(err=>next(err))
+  //     }
+  //   })
+  //   .catch(err => {
+
+  //     next(err)
+  //   });
+
+
+
 })
 
 

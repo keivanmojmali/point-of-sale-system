@@ -27,6 +27,18 @@ export default class App extends React.Component {
     //this is where you would set and store them
   };
   renderPage() {
+    fetch('/api/orderItems/orderId')
+      .then(result => {
+        return result.json()
+      })
+      .then(data => {
+        let newOrderId = data[0].max + 1;
+        // this.props.setTheState({ 'currentOrderId': newOrderId })
+        localStorage.setItem('currentId', JSON.stringify(newOrderId));
+
+      }).catch(err => {
+        console.error(err)
+      })
     switch(this.state.route.path){
       case 'cart':
         return <Cart />;
