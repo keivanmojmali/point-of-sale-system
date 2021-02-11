@@ -94,7 +94,7 @@ export default class Cart extends React.Component {
       return result.json();
     })
     .then(data=>{
-      console.log(data)
+
     })
     .catch(err=>{
       console.error(err)
