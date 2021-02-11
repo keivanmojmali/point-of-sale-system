@@ -46,7 +46,7 @@ export default class Cart extends React.Component {
     this.setState({ checkout: true })
   }
   handleRemove(orderItemsId){
-    console.log('hithhere')
+
     let items = JSON.parse(localStorage.getItem('itemsInCart')) - 1;
     let newNum = JSON.stringify(items)
     localStorage.setItem('itemsInCart', newNum);
@@ -62,10 +62,12 @@ export default class Cart extends React.Component {
       return result.json()
     })
     .then(data=>{
-      let currentOrderArray = [...this.state.currentOrderArray].filter((order)=>{
-        return order.orderItemsId !== orderItemsId;
-      })
-      this.setState({currentOrderArray})
+      // let currentOrderArray = [...this.state.currentOrderArray].filter((order)=>{
+      //   return order.orderItemsId !== orderItemsId;
+
+      // })
+      // this.setState({currentOrderArray})
+      this.queryOrder()
     })
     .catch(err=>{
       console.error(err)
@@ -107,17 +109,13 @@ export default class Cart extends React.Component {
 
 
   renderPage(){
-    console.log('HERE THE CART',this.state.currentOrderArray)
-    console.log(this.state.currentOrderArray)
     if(this.state.checkout === false){
-
       return <ItemizedCart
       handleRemove={this,this.handleRemove}
       currentOrderArray={this.state.currentOrderArray}
       handleCheckout={this.handleCheckout}
       />
     } else {
-
       return <Payment handleSubmit={this.handleSubmit} />
     }
   }
@@ -133,12 +131,12 @@ export default class Cart extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid d-flex flex-column justify-content-between">
-        <div className="row">
+      <div className="container-fluid d-flex flex-column justify-content-between position-relative h-100">
+        <div className="row scroll h-100 pb-five-percent">
           {this.renderPage()}
         </div>
         <div className="row border-top ">
-          <div className="col d-flex justify-content-around align-items-center pt-3 pb-4">
+          <div className="bg-dark text-light col d-flex justify-content-around align-items-center pt-3 pb-4 ">
             <h3>Total: ${this.state.total}</h3>
             {this.checkoutButton()}
           </div>

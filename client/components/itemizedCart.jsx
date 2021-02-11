@@ -34,7 +34,7 @@ export default class ItemizedCart extends React.Component {
     return (
       <div className="container d-flex flex-column justify-content-between pt-4">
         <div className="row">
-          <div className="col ">
+          <div className="col">
             {/* THIS IS THE PART OF THE CART THAT IS RENDERING THE SHOPPING CART
       WILL NEED TO SCROLL SO IT DOES NOT GET IN THE WAY OF THE CHECKOUT BUTTON */}
             {this.renderOrder()}
