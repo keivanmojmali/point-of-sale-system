@@ -13,7 +13,7 @@ export default class Orders extends React.Component {
   orderLi(orderArray) {
     return orderArray.map((item)=>{
       let parsed = JSON.parse(item);
-      return <li>
+      return <li key={parsed.orderItemsId}>
         {parsed.name}
       </li>
     })
