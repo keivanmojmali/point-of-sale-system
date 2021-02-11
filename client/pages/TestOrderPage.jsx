@@ -47,7 +47,6 @@ export default class TestOrdersPage extends React.Component {
     this.setState( {currentOrderId})
   }
   render() {
-
     return (
 
       <div className="container-fluid h-100">

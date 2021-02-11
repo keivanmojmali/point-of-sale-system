@@ -8,6 +8,7 @@ export default class RenderItems extends React.Component {
   }
 renderData(){
   if(this.props.categoryData === null) {
+    console.log('ERRRRRRRRRRRRRRR');
     return;
   }
   return this.props.categoryData.map((item) => {
@@ -24,6 +25,7 @@ renderData(){
 }
 
   render(){
+
     return(
       <div className="row  category-design larger-padding">
         {this.renderData()}
