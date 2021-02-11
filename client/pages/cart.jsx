@@ -46,6 +46,11 @@ export default class Cart extends React.Component {
     this.setState({ checkout: true })
   }
   handleRemove(orderItemsId){
+    console.log('hithhere')
+    let items = JSON.parse(localStorage.getItem('itemsInCart')) - 1;
+    let newNum = JSON.stringify(items)
+    localStorage.setItem('itemsInCart', newNum);
+    this.props.setCartAmount(newNum)
     fetch('/api/deleteItem',{
       method:'PATCH',
       headers:{
@@ -92,6 +97,11 @@ export default class Cart extends React.Component {
     .catch(err=>{
       console.error(err)
     })
+    let items = 0;
+    let newNum = JSON.stringify(items)
+    localStorage.setItem('itemsInCart', newNum);
+    this.props.setCartAmount(newNum);
+
 
   }
 

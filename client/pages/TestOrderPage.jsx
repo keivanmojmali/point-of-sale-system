@@ -16,6 +16,10 @@ export default class TestOrdersPage extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   };
   handleClick(itemId, price) {
+    let items = JSON.parse(localStorage.getItem('itemsInCart')) + 1;
+    let newNum = JSON.stringify(items)
+    localStorage.setItem('itemsInCart', newNum);
+    this.props.setCartAmount(newNum);
     let sendTo = { itemId, orderId: this.state.currentOrderId };
     fetch('/api/addTo/openOrders', {
       method: 'POST',

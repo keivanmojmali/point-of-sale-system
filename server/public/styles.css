@@ -61,8 +61,8 @@ body{
 .change-modal {
   position: fixed !important;
   background-color: gray;
-  top: 15%;
-  left: 10% !important;
+  top: 24%;
+  left: 0% !important;
   margin-left: 23% !important;
   color: white;
   padding: 1%;
@@ -83,4 +83,13 @@ body{
 
 .border-one{
   border: 1px solid black;
+}
+
+.items-in-cart {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 1rem;
 }

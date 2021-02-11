@@ -12,9 +12,10 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
-
+      cartAmount: null
     };
     this.renderPage = this.renderPage.bind(this);
+    this.setCartAmount = this.setCartAmount.bind(this)
   };
   componentDidMount() {
     window.addEventListener('hashchange', () => {
@@ -41,10 +42,10 @@ export default class App extends React.Component {
       })
     switch(this.state.route.path){
       case 'cart':
-        return <Cart />;
+        return <Cart setCartAmount={this.setCartAmount} />;
         break;
       case 'pos':
-        return <TestOrdersPage />;
+        return <TestOrdersPage setCartAmount={this.setCartAmount} />;
         break;
       case 'inventory':
         return <Inventory />;
@@ -54,6 +55,9 @@ export default class App extends React.Component {
           break;
     }
   };
+  setCartAmount(cartAmount) {
+    this.setState({ cartAmount });
+  }
   render() {
     return (
 
@@ -63,7 +67,7 @@ export default class App extends React.Component {
         </div>
         <div className="row">
             <div className="col p-0 navbar-design">
-            <Navbar />
+            <Navbar itemsInCart={this.state.cartAmount} />
             </div>
         </div>
       </div>
