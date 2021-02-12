@@ -25,8 +25,6 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       })
     });
-    //if you want to add log in and log out tokens -
-    //this is where you would set and store them
   };
   renderPage() {
     fetch('/api/orderItems/orderId')
@@ -35,7 +33,6 @@ export default class App extends React.Component {
       })
       .then(data => {
         let newOrderId = data[0].max + 1;
-        // this.props.setTheState({ 'currentOrderId': newOrderId })
         localStorage.setItem('currentId', JSON.stringify(newOrderId));
 
       }).catch(err => {
@@ -64,7 +61,6 @@ export default class App extends React.Component {
   }
   render() {
     return (
-
       <div className="container-fluid h-100">
         <div className="row h-100">
             {this.renderPage()}

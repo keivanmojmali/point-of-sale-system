@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -14,9 +13,6 @@ export default class Navbar extends React.Component {
     }
   };
   render() {
-    //ADD THE BOOTSTRAP STYLING AND THE EXTRA STLYING THAT YOU WANT
-    //THIS IS BUILT WE REG BOOTSTRAP NAV
-
     return(
       <nav className="navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
         <a href="#pos" className="navbar-brand d-flex center-all">
@@ -34,6 +30,5 @@ export default class Navbar extends React.Component {
         </a>
       </nav>
     )
-
   }
 }

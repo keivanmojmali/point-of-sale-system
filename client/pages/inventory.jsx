@@ -92,7 +92,6 @@ export default class Inventory extends React.Component {
       )
     }
   render(){
-
     return (
       <div className="container-fluid h-100">
         <div className="row">

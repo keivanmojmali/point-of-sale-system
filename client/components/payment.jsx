@@ -32,7 +32,6 @@ export default class Payment extends React.Component {
             <input type="text" name='lName' value={this.state.user.lName} onChange={this.onChange}
               className='form-control ml-2' placeholder=' Last Name ' />
           </div>
-
           <div className="form-group">
             <input type="text" name='cc' value={this.state.user.cc} onChange={this.onChange}
               className='form-control' placeholder=' CC # ' />
@@ -57,7 +56,4 @@ export default class Payment extends React.Component {
       </div>
     )
   }
-
-
-
 }
