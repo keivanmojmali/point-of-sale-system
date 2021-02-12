@@ -32,7 +32,7 @@ export default class ItemizedCart extends React.Component {
   render() {
 
     return (
-      <div className="container d-flex flex-column justify-content-between pt-4">
+      <div className="container pt-4">
         <div className="row">
           <div className="col">
             {/* THIS IS THE PART OF THE CART THAT IS RENDERING THE SHOPPING CART

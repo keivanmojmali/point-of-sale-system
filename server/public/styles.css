@@ -108,3 +108,21 @@ body{
   top:0%;
   overflow: scroll;
 }
+
+.best-seller {
+  height: 30%;
+  overflow: scroll;
+}
+
+.width-30 {
+  width: 30%;
+}
+
+
+.twenty-basis {
+  flex-basis: 20% !important;
+}
+
+.top-nav-bar {
+  height: 10%;
+}

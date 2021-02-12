@@ -74,7 +74,22 @@ app.post(`/api/postOrder`,(req,res,next)=>{
 })
 
 
+app.get('/api/bestSeller',(req,res,next)=>{
+  const sql = `
+  select *
+  from "bestSellers"
+  join "inventory" using ("itemId")
+  `
+  db.query(sql)
+  .then(result=>{
 
+    console.log(result.rows)
+    res.status(201).json(result.rows)
+  })
+  .catch(err=>next(err))
+
+
+})
 
 
 

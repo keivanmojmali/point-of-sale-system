@@ -118,4 +118,38 @@ values ('Hot Coffee','Caffe Americano','Espresso shots topped with hot water cre
 ('Bakery','Marshmallow Dream Bar','This crispy, chewy marshmallow bar, made of ooey-gooey, soft marshmallows, crispy rice, creates a sweet treat that’ll make you snack like a kid again.',4.25,650,'https://globalassets.starbucks.com/assets/6d602f5b0d9f414598ea9c85656dbcac.jpg?impolicy=1by1_wide_1242');
 
 insert into "users" ("firstName","lastName","storeName")
-values ('Employee','Coffee','The Coffee Spot')
+values ('Employee','Coffee','The Coffee Spot');
+
+insert into "bestSellers" ("itemId")
+values ('1'),
+('2'),
+('8'),
+('10'),
+('19'),
+('6'),
+('22'),
+('5'),
+('19'),
+('21'),
+('30'),
+('34'),
+('35'),
+('32'),
+('29'),
+('40'),
+('45'),
+('47'),
+('49'),
+('51'),
+('53'),
+('61'),
+('81'),
+('86'),
+('89'),
+('91'),
+('96'),
+('98'),
+('99'),
+('100'),
+('92'),
+('57');

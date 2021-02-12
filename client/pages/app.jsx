@@ -5,6 +5,7 @@ import TestOrdersPage from './TestOrderPage';
 import Cart from './cart';
 import parseRoute from '../../server/parseRoute';
 import Orders from './orders';
+import StartOrder from '../components/startorder'
 
 
 export default class App extends React.Component {
@@ -50,7 +51,7 @@ export default class App extends React.Component {
       case 'inventory':
         return <Inventory />;
         break;
-        case 'orders':
+        case 'orders' || '':
           return <Orders />
           break;
     }

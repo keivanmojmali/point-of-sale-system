@@ -25,7 +25,6 @@ export default class QueryCategories extends React.Component {
       })
   }
   renderCategories() {
-
     if(this.props.categories === null){
       return;
     }

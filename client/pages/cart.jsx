@@ -131,7 +131,7 @@ export default class Cart extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid d-flex flex-column justify-content-between position-relative h-100">
+      <div className="col d-flex flex-column justify-content-between position-relative h-100">
         <div className="row scroll h-100 pb-five-percent">
           {this.renderPage()}
         </div>

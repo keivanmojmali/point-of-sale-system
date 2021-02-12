@@ -1,4 +1,5 @@
 import React from 'react';
+import StartOrder from './startorder'
 
 export default class RenderItems extends React.Component {
   constructor(props) {
@@ -7,27 +8,27 @@ export default class RenderItems extends React.Component {
     this.handleClick = this.props.handleClick.bind(this);
   }
 renderData(){
-  if(this.props.categoryData === null) {
-    console.log('ERRRRRRRRRRRRRRR');
-    return;
+  if (this.props.categoryData === null) {
+    return <StartOrder handleClick={this.props.handleClick} />
   }
   return this.props.categoryData.map((item) => {
     return (
-      <div key={item.itemId} className="col thirty-basis" onClick={() => { this.handleClick(item.itemId, item.price) }}>
-        <img className="img-thumbnail" src={item.img} alt="Drink Image" />
-        <h4>{item.name}</h4>
-        <h6>{item.description}</h6>
-        <h6>Price: {item.price}</h6>
-        <h6>in Stock: {item.stock}</h6>
+      <div key={item.itemId} className="row thirty-basis m-1" onClick={() => { this.handleClick(item.itemId, item.price) }}>
+        <div className="col thirty-basis">
+          <img className="img-thumbnail" src={item.img} alt="Drink Image" />
+          <h4>{item.name}</h4>
+          <h6>{item.description}</h6>
+          <h6>Price: {item.price}</h6>
+          <h6>in Stock: {item.stock}</h6>
+        </div>
       </div>
     )
   })
 }
 
   render(){
-
     return(
-      <div className="row  category-design larger-padding">
+      <div className="col category-design">
         {this.renderData()}
       </div>
     )

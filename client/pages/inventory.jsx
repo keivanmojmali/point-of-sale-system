@@ -42,6 +42,7 @@ export default class Inventory extends React.Component {
       this.setState({displayModal:false, editModal: null})
     })
     .catch(err=>console.error(err))
+
   }
   onChange(event){
     let editModal = this.state.editModal;
@@ -103,7 +104,7 @@ export default class Inventory extends React.Component {
           categories={this.state.categories}
           />
         </div>
-        <div className="row h-100 scroll">
+        <div className="row h-100 scroll pb-five-percent">
         <RenderInventory
         categoryData={this.state.categoryData}
         handleClick={this.handleClick}

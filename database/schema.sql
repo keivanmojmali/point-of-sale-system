@@ -69,6 +69,14 @@ CREATE TABLE "orderItems" (
 );
 
 
+CREATE TABLE "bestSellers" (
+	"itemId" integer NOT NULL,
+	"bestSellerId" serial NOT NULL,
+	CONSTRAINT "bestSellers_pk" PRIMARY KEY ("bestSellerId")
+) WITH (
+  OIDS=FALSE
+);
+
 
 
 
@@ -78,3 +86,4 @@ ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFE
 
 
 ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk0" FOREIGN KEY ("itemId") REFERENCES "inventory"("itemId");
+ALTER TABLE "bestSellers" ADD CONSTRAINT "bestSellers_fk0" FOREIGN KEY ("itemId") REFERENCES "inventory"("itemId");
