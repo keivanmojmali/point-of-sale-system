@@ -26,7 +26,7 @@ export default class StartOrder extends React.Component {
       this.setState({bestSeller:data})
     })
     .catch(err=>{
-      console.log(err)
+      console.error(err)
     })
   }
   renderBestSellers(category) {

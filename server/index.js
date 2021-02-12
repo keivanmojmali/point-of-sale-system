@@ -82,8 +82,6 @@ app.get('/api/bestSeller',(req,res,next)=>{
   `
   db.query(sql)
   .then(result=>{
-
-    console.log(result.rows)
     res.status(201).json(result.rows)
   })
   .catch(err=>next(err))
@@ -239,7 +237,6 @@ app.get('/api/currentOrder/:localStorageId', (req, res, next) => {
   db.query(sql,params)
   .then(result=>{
     res.status(201).json(result.rows)
-    console.log(result.rows)
   })
   .catch(err=>{
     console.error(err)
@@ -400,6 +397,5 @@ app.use(errorMiddleware);
 
 
 app.listen(process.env.PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`express server listening on port ${process.env.PORT}`);
+
 });
