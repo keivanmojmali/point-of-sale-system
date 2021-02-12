@@ -15,7 +15,7 @@ export default class StartOrder extends React.Component {
     const month = monthList[today.getMonth()];
     const day = today.getDate();
     const year = today.getFullYear();
-    return `${month}, ${day}, ${year}`
+    return `${month} ${day}, ${year}`
   }
   componentDidMount(){
     fetch('/api/bestSeller')
@@ -43,24 +43,7 @@ export default class StartOrder extends React.Component {
     })
   }
   render() {
-    return (
-      <div className="row">
-        <div className="col">
-          <div className="row">
-            <div className="col m-2 text-center">
-              <h2>Today is {this.getDay()}. Let's Make it a Great Day!</h2>
-            </div>
-          </div>
+    return <h2>Today is {this.getDay()}. Let's Make it a Great Day!</h2>
 
-          <div className="row thirty-basis d-flex flex-wrap best-seller p-1">
-            {this.renderBestSellers()}
-          </div>
-
-        </div>
-      </div>
-    )
-  }
-
-
-
+}
 }
