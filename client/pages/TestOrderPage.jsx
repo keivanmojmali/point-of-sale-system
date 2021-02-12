@@ -32,7 +32,6 @@ export default class TestOrdersPage extends React.Component {
         return result.json()
       })
       .then(data => {
-
       })
       .catch(err => {
         console.error(err)
@@ -40,7 +39,6 @@ export default class TestOrdersPage extends React.Component {
   }
   setTheState(input){
     this.setState(input);
-
   }
   componentDidMount(){
     let currentOrderId = JSON.parse(localStorage.getItem('currentId'));
@@ -48,7 +46,6 @@ export default class TestOrdersPage extends React.Component {
   }
   render() {
     return (
-
       <div className="container-fluid h-100">
         <div className="row">
           <QueryCategories setTheState={this.setTheState}

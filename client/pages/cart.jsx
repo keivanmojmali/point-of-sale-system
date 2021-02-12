@@ -23,7 +23,6 @@ export default class Cart extends React.Component {
       return result.json()
     })
     .then(data=>{
-
       this.setState({currentOrderArray: data});
       let reducerMethod = (accumulator, currentValue) => {
         return accumulator + currentValue.price;
@@ -62,21 +61,12 @@ export default class Cart extends React.Component {
       return result.json()
     })
     .then(data=>{
-      // let currentOrderArray = [...this.state.currentOrderArray].filter((order)=>{
-      //   return order.orderItemsId !== orderItemsId;
-
-      // })
-      // this.setState({currentOrderArray})
       this.queryOrder()
     })
     .catch(err=>{
       console.error(err)
     })
-
-
   }
-
-
   handleSubmit(order) {
     let sendTo = order;
     sendTo.orderId = this.state.currentOrderArray[0].orderId;
@@ -103,11 +93,7 @@ export default class Cart extends React.Component {
     let newNum = JSON.stringify(items)
     localStorage.setItem('itemsInCart', newNum);
     this.props.setCartAmount(newNum);
-
-
   }
-
-
   renderPage(){
     if(this.state.checkout === false){
       return <ItemizedCart
@@ -144,5 +130,4 @@ export default class Cart extends React.Component {
       </div>
     )
   }
-
 }

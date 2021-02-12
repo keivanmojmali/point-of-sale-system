@@ -12,7 +12,6 @@ export default class QueryCategories extends React.Component {
   };
 
   getData(){
-
     fetch('/api/category/getAll')
     .then(result=>{
       return result.json()
@@ -55,9 +54,7 @@ export default class QueryCategories extends React.Component {
   componentDidMount(){
     this.getData();
   }
-
   render(){
-
     return (
       <div className="col h-100 bg-dark text-light">
         <div className="row category-design border-bottom">
@@ -67,8 +64,6 @@ export default class QueryCategories extends React.Component {
           {this.renderCategories()}
         </div>
       </div>
-
     )
 }
-
 }

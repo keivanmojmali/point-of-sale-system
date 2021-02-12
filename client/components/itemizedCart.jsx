@@ -4,7 +4,6 @@ export default class ItemizedCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
      this.renderOrder = this.renderOrder.bind(this);
   }
@@ -30,19 +29,14 @@ export default class ItemizedCart extends React.Component {
     })
   }
   render() {
-
     return (
       <div className="container pt-4">
         <div className="row">
           <div className="col">
-            {/* THIS IS THE PART OF THE CART THAT IS RENDERING THE SHOPPING CART
-      WILL NEED TO SCROLL SO IT DOES NOT GET IN THE WAY OF THE CHECKOUT BUTTON */}
             {this.renderOrder()}
           </div>
         </div>
       </div>
     )
   }
-
-
 }

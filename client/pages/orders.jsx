@@ -65,7 +65,6 @@ export default class Orders extends React.Component {
                 </div>
               </div>
             </div>
-
             <div className="row">
               <div className="col">
                 <h4>Order:</h4>
@@ -81,7 +80,6 @@ export default class Orders extends React.Component {
         </div>
       )
     })
-
   };
   componentDidMount(){
     fetch('/api/getAll/orders')
@@ -89,19 +87,15 @@ export default class Orders extends React.Component {
       return result.json()
     })
     .then(data=>{
-
       this.setState({orders: data})
     })
     .catch(err=>next(err))
   }
   render(){
-
 return (
-
   <div className="containier-fluid p-5 m-3 w-100 scroll h-100 pb-five-percent">
     {this.renderOrders()}
   </div>
-)
+    )
   }
-
 }
