@@ -93,3 +93,36 @@ body{
   color: white;
   font-size: 1rem;
 }
+
+.pb-five-percent {
+  padding-bottom:5% !important;
+}
+
+.absolute-above-bar{
+  position: absolute;
+  bottom:0%;
+}
+
+.absolute-below-bar{
+  position: absolute;
+  top:0%;
+  overflow: scroll;
+}
+
+.best-seller {
+  height: 30%;
+  overflow: scroll;
+}
+
+.width-30 {
+  width: 30%;
+}
+
+
+.twenty-basis {
+  flex-basis: 20% !important;
+}
+
+.top-nav-bar {
+  height: 10%;
+}

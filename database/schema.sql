@@ -7,12 +7,12 @@ drop schema "public" cascade;
 create schema "public";
 CREATE TABLE "inventory" (
 	"itemId" serial NOT NULL,
-	"type" VARCHAR(255) NOT NULL,
-	"name" VARCHAR(255) NOT NULL,
-	"description" VARCHAR(255) NOT NULL,
+	"type" VARCHAR(500) NOT NULL,
+	"name" VARCHAR(500) NOT NULL,
+	"description" VARCHAR(500) NOT NULL,
 	"price" integer NOT NULL,
 	"stock" integer NOT NULL,
-	"img" VARCHAR(255) NOT NULL,
+	"img" VARCHAR(500) NOT NULL,
 	CONSTRAINT "inventory_pk" PRIMARY KEY ("itemId")
 ) WITH (
   OIDS=FALSE
@@ -22,9 +22,9 @@ CREATE TABLE "inventory" (
 
 CREATE TABLE "users" (
 	"userId" serial NOT NULL,
-	"firstName" VARCHAR(255) NOT NULL,
-	"lastName" VARCHAR(255) NOT NULL,
-	"storeName" VARCHAR(255) NOT NULL,
+	"firstName" VARCHAR(500) NOT NULL,
+	"lastName" VARCHAR(500) NOT NULL,
+	"storeName" VARCHAR(500) NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
@@ -34,9 +34,9 @@ CREATE TABLE "users" (
 
 CREATE TABLE "customers" (
 	"customerId" serial NOT NULL,
-	"phone" VARCHAR(255) NOT NULL,
-	"firstName" VARCHAR(255) NOT NULL,
-	"lastName" VARCHAR(255) NOT NULL,
+	"phone" VARCHAR(500) NOT NULL,
+	"firstName" VARCHAR(500) NOT NULL,
+	"lastName" VARCHAR(500) NOT NULL,
 	CONSTRAINT "customers_pk" PRIMARY KEY ("customerId")
 ) WITH (
   OIDS=FALSE
@@ -69,6 +69,14 @@ CREATE TABLE "orderItems" (
 );
 
 
+CREATE TABLE "bestSellers" (
+	"itemId" integer NOT NULL,
+	"bestSellerId" serial NOT NULL,
+	CONSTRAINT "bestSellers_pk" PRIMARY KEY ("bestSellerId")
+) WITH (
+  OIDS=FALSE
+);
+
 
 
 
@@ -78,3 +86,4 @@ ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFE
 
 
 ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk0" FOREIGN KEY ("itemId") REFERENCES "inventory"("itemId");
+ALTER TABLE "bestSellers" ADD CONSTRAINT "bestSellers_fk0" FOREIGN KEY ("itemId") REFERENCES "inventory"("itemId");

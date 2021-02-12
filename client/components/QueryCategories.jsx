@@ -25,7 +25,6 @@ export default class QueryCategories extends React.Component {
       })
   }
   renderCategories() {
-
     if(this.props.categories === null){
       return;
     }
@@ -58,15 +57,17 @@ export default class QueryCategories extends React.Component {
   }
 
   render(){
+
     return (
       <div className="col h-100 bg-dark text-light">
-        <div className="row category-design border-bottom ">
-            <div className="col d-flex justify-content-center align-items-center">
-            <h4>Categories:</h4>
-            </div>
-            {this.renderCategories()}
+        <div className="row category-design border-bottom">
+          <h4>Categories:</h4>
+        </div>
+        <div className="row category-design border-bottom">
+          {this.renderCategories()}
         </div>
       </div>
+
     )
 }
 
