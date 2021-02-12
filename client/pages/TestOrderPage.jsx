@@ -55,7 +55,7 @@ export default class TestOrdersPage extends React.Component {
           categories={this.state.categories}
           />
         </div>
-        <div className="row h-100 scroll">
+        <div className="row lower-height scroll">
           <RenderItems handleClick={this.handleClick}
            categoryData={this.state.categoryData} />
         </div>

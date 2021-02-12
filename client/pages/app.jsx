@@ -51,9 +51,12 @@ export default class App extends React.Component {
       case 'inventory':
         return <Inventory />;
         break;
-        case 'orders' || '':
+        case 'orders':
           return <Orders />
           break;
+      case '':
+        return <TestOrdersPage />
+        break;
     }
   };
   setCartAmount(cartAmount) {
