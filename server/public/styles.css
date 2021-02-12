@@ -123,6 +123,6 @@ body{
   flex-basis: 20% !important;
 }
 
-.top-nav-bar {
-  height: 10%;
+.lower-height {
+  height: 80%;
 }

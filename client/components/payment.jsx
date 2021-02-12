@@ -23,7 +23,7 @@ export default class Payment extends React.Component {
     return (
       <div className="col">
         <form action="#" className='h-100 w-100 p-5 d-flex flex-column align-items-between'>
-          <div className="form-group d-flex justify-content-center bg-primary text-light">
+          <div className="form-group d-flex justify-content-center bg-dark text-light">
             <h2>Complete Customer Information Below</h2>
           </div>
           <div className="form-group border-bottom mb-2 border-one d-flex">
