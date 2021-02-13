@@ -1,5 +1,5 @@
 import React from 'react';
-import StartOrder from './startorder'
+import StartOrder from './startOrder';
 
 export default class RenderItems extends React.Component {
   constructor(props) {

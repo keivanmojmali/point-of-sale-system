@@ -43,6 +43,6 @@ export default class StartOrder extends React.Component {
     })
   }
   render() {
-    return <h2>Today is {this.getDay()}. Let's Make it a Great Day!</h2>
+    return (<h2>Today is {this.getDay()}. Let's Make it a Great Day!</h2>)
   }
 }
