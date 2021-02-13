@@ -52,7 +52,7 @@ export default class App extends React.Component {
           return <Orders />
           break;
       case '':
-        return <TestOrdersPage />
+        return <TestOrdersPage setCartAmount={this.setCartAmount} />
         break;
     }
   };
