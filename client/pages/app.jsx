@@ -5,7 +5,7 @@ import TestOrdersPage from './TestOrderPage';
 import Cart from './cart';
 import parseRoute from '../../server/parseRoute';
 import Orders from './orders';
-import StartOrder from '../components/startorder'
+
 
 
 export default class App extends React.Component {
