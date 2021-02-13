@@ -6,7 +6,7 @@ import QueryCategories from '../components/QueryCategories'
 
 export default class TestOrdersPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       categories: null,
       categoryData: null,
