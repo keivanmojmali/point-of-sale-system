@@ -153,3 +153,11 @@ values ('1'),
 ('100'),
 ('92'),
 ('57');
+
+insert into "directions" ("src")
+values ('Images/a.Png'),
+('Images/start-order.gif'),
+('Images/add-to-cart.gif'),
+('Images/cart.gif'),
+('Images/orders.gif'),
+('Images/inventory.gif')

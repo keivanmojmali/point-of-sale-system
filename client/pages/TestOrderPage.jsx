@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import RenderItems from '../components/renderItems'
 import Orders from './orders';
-import QueryCategories from '../components/QueryCategories'
+import QueryCategories from '../components/QueryCategories';
+import PopUp from '../components/popUp'
 
 export default class TestOrdersPage extends React.Component {
   constructor(props) {
@@ -10,10 +11,12 @@ export default class TestOrdersPage extends React.Component {
     this.state = {
       categories: null,
       categoryData: null,
-      currentOrderId: null
+      currentOrderId: null,
+      directionsModal: true,
     }
     this.setTheState = this.setTheState.bind(this);
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.popUp = this.popUp.bind(this);
   };
   handleClick(itemId, price) {
     let items = JSON.parse(localStorage.getItem('itemsInCart')) + 1;
@@ -44,6 +47,14 @@ export default class TestOrdersPage extends React.Component {
     let currentOrderId = JSON.parse(localStorage.getItem('currentId'));
     this.setState( {currentOrderId})
   }
+  popUp(){
+    if(this.state.directionsModal === false) {
+      return;
+    }
+    return (
+        <PopUp setTheState={this.setTheState} />
+    )
+  }
   render() {
     return (
       <div className="container-fluid h-100">
@@ -56,6 +67,7 @@ export default class TestOrdersPage extends React.Component {
           <RenderItems handleClick={this.handleClick}
            categoryData={this.state.categoryData} />
         </div>
+        {this.popUp()}
       </div>
     )
   }

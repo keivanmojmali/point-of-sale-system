@@ -26,8 +26,8 @@ body{
   align-content: center;
 }
 
-.thirty-basis {
-  flex-basis: 30% !important;
+.item-basis {
+  flex-basis: 23% !important;
 }
 
 
@@ -125,4 +125,15 @@ body{
 
 .lower-height {
   height: 80%;
+}
+
+.pop-up{
+  position: fixed;
+  height: 70vh;
+  width: 70vh;
+  top: 50%;
+  left: 50%;
+  margin-top: -25%;
+  margin-left: -25%;
+  background-color: lightgray;
 }
