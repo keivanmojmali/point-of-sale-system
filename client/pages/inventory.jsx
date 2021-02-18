@@ -94,17 +94,17 @@ export default class Inventory extends React.Component {
     }
   render(){
     return (
-      <div className="col h-100 d-flex flex-column">
+      <div className="col d-flex flex-column h-100">
         <div className="row">
           {this.displayModal()}
         </div>
-        <div className="row align-self-start">
+        <div className="row align-self-start w-100 p-0 m-0">
           <QueryCategories
           setTheState={this.setTheState}
           categories={this.state.categories}
           />
         </div>
-        <div className="row h-100 scroll pb-five-percent">
+        <div className="row overflow-auto">
         <RenderInventory
         categoryData={this.state.categoryData}
         handleClick={this.handleClick}

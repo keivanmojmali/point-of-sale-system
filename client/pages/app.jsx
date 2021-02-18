@@ -60,12 +60,12 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid h-100">
-        <div className="row h-100">
+      <div className="container-fluid h-100 d-flex flex-column justify-content-between">
+        <div className="row h-100 overflow-auto">
             {this.renderPage()}
         </div>
         <div className="row">
-            <div className="col p-0 navbar-design">
+            <div className="col p-0">
             <Navbar itemsInCart={this.state.cartAmount} />
             </div>
         </div>

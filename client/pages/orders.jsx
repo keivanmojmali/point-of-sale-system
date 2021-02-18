@@ -47,8 +47,8 @@ export default class Orders extends React.Component {
     if(this.state.orders.length === 0) {
       return (
         <div>
-          <div className="row small-gray-nav p-0 m-0"></div>
-          <div className='row d-flex flex-column align-items-center'>
+          <div className="row small-gray-nav"></div>
+          <div className='row d-flex text-center flex-column align-items-center'>
             <h1>There are currently 0 open orders.</h1>
             <h1>Great job, team!</h1>
           </div>
@@ -57,7 +57,7 @@ export default class Orders extends React.Component {
     }
     return this.state.orders.map((order)=>{
       return (
-        <div className="row border-one mb-2" key={order.customerId}>
+        <div className="row border border-dark mb-2" key={order.customerId}>
           <div className="col">
             <div className="row bg-dark text-light">
               <div className="col">
@@ -104,7 +104,7 @@ export default class Orders extends React.Component {
   }
   render(){
 return (
-  <div className="containier-fluid p-5 m-3 w-100 scroll h-100 pb-five-percent">
+  <div className="col p-4">
     {this.renderOrders()}
   </div>
     )

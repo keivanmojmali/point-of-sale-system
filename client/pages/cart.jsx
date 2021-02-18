@@ -117,12 +117,12 @@ export default class Cart extends React.Component {
   }
   render() {
     return (
-      <div className="col d-flex flex-column justify-content-between position-relative h-100">
-        <div className="row scroll h-100 pb-five-percent">
+      <div className="col d-flex flex-column justify-content-between">
+        <div className="row">
           {this.renderPage()}
         </div>
-        <div className="row border-top ">
-          <div className="bg-dark text-light col d-flex justify-content-around align-items-center pt-3 pb-4 ">
+        <div className="row border-top">
+          <div className="p-2 bg-dark text-light col d-flex justify-content-around align-items-center">
             <h3>Total: ${this.state.total}</h3>
             {this.checkoutButton()}
           </div>
