@@ -61,7 +61,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container-fluid h-100 d-flex flex-column justify-content-between">
-        <div className="row h-100">
+        <div className="row h-100 overflow-auto">
             {this.renderPage()}
         </div>
         <div className="row">

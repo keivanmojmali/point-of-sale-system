@@ -28,7 +28,6 @@ export default class RenderInventory extends React.Component {
           </td>
           <td>{row.type}</td>
           <td>{row.name}</td>
-          <td>{row.description}</td>
           <td>{row.price}</td>
           <td>{row.stock}</td>
         </tr>
@@ -38,7 +37,7 @@ export default class RenderInventory extends React.Component {
   renderInstruction(){
     if(this.props.categoryData === null) {
       return (
-        <div className='row d-flex flex-column align-items-center mt-5 p-2'>
+        <div className='row d-flex text-center flex-column align-items-center mt-5 p-2'>
           <h1>Inventory Management:</h1>
           <h3>View Inventory by Category</h3>
           <h3>Edit Inventory using "Edit" Button</h3>
@@ -57,7 +56,6 @@ export default class RenderInventory extends React.Component {
               <th scope='col'>ItemId</th>
               <th scope='col'>Type</th>
               <th scope='col'>Name</th>
-              <th scope='col'>Description</th>
               <th scope='col'>Price</th>
               <th scope='col'>Stock</th>
             </tr>

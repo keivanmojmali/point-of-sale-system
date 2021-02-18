@@ -20,7 +20,7 @@ export default class ItemizedCart extends React.Component {
     }
     return this.props.currentOrderArray.map((item) => {
       return (
-        <div className="col" key={item.orderItemsId}>
+        <div className="col m-1" key={item.orderItemsId}>
           <div className="row d-flex justify-content-between align-items-center
              border-bottom  ">
             <div className="col">
@@ -38,7 +38,7 @@ export default class ItemizedCart extends React.Component {
   render() {
     return (
       <div className="container pt-4">
-        <div className="row">
+        <div className="row d-flex flex-column">
             {this.renderOrder()}
         </div>
       </div>

@@ -1,7 +1,6 @@
 /* body{
-  height: 90vh;
   margin: 0;
-  width: 100%;
+
 } */
 .icon-size {
   font-size: 250%;
@@ -19,8 +18,8 @@
 
 } */
 
-.item-basis {
-  flex-basis: 23% !important;
+.item-width {
+  flex-basis: 15% !important;
 }
 
 
@@ -78,14 +77,6 @@
   border: 1px solid black;
 } */ */
 
-.items-in-cart {
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-  color: white;
-  font-size: 1rem;
-}
 
 /* .pb-five-percent {
   padding-bottom:5% !important;
@@ -139,4 +130,17 @@
   height: 30px;
   background-color: darkgray;
 
+}
+
+.test {
+  min-height: 50%;
+}
+
+.items-in-cart {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 1rem;
 }

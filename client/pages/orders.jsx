@@ -57,7 +57,7 @@ export default class Orders extends React.Component {
     }
     return this.state.orders.map((order)=>{
       return (
-        <div className="row border-one mb-2" key={order.customerId}>
+        <div className="row border border-dark mb-2" key={order.customerId}>
           <div className="col">
             <div className="row bg-dark text-light">
               <div className="col">
@@ -104,7 +104,7 @@ export default class Orders extends React.Component {
   }
   render(){
 return (
-  <div className="col">
+  <div className="col p-4">
     {this.renderOrders()}
   </div>
     )

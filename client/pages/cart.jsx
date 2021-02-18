@@ -122,7 +122,7 @@ export default class Cart extends React.Component {
           {this.renderPage()}
         </div>
         <div className="row border-top">
-          <div className="bg-dark text-light col d-flex justify-content-around align-items-center">
+          <div className="p-2 bg-dark text-light col d-flex justify-content-around align-items-center">
             <h3>Total: ${this.state.total}</h3>
             {this.checkoutButton()}
           </div>
