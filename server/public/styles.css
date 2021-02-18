@@ -137,3 +137,14 @@ body{
   margin-left: -25%;
   background-color: lightgray;
 }
+
+.cat-btn-width {
+  width: 110px !important;
+}
+
+.small-gray-nav {
+  height: 30px;
+  width: 100%;
+  background-color: darkgray;
+
+}
