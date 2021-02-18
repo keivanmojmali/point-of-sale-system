@@ -44,6 +44,17 @@ export default class Orders extends React.Component {
     if(this.state.orders === null){
       return;
     }
+    if(this.state.orders.length === 0) {
+      return (
+        <div>
+          <div className="row small-gray-nav p-0 m-0"></div>
+          <div className='row d-flex flex-column align-items-center'>
+            <h1>There are currently 0 open orders.</h1>
+            <h1>Great job, team!</h1>
+          </div>
+        </div>
+      )
+    }
     return this.state.orders.map((order)=>{
       return (
         <div className="row border-one mb-2" key={order.customerId}>

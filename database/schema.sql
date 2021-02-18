@@ -57,6 +57,13 @@ CREATE TABLE "orders" (
   OIDS=FALSE
 );
 
+CREATE TABLE "directions" (
+	"directionsid" serial NOT NULL,
+	"src" VARCHAR(255) NOT NULL,
+	CONSTRAINT "directions_pk" PRIMARY KEY ("directionsid")
+) WITH (
+  OIDS=FALSE
+);
 
 
 CREATE TABLE "orderItems" (

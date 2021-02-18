@@ -28,6 +28,7 @@ export default class Inventory extends React.Component {
     this.setState({displayModal:false, editModal:null});
   }
   handleSubmit(){
+    event.preventDefault();
     fetch('/api/category/updateItem',{
       method: 'PATCH',
       headers: {
@@ -93,11 +94,11 @@ export default class Inventory extends React.Component {
     }
   render(){
     return (
-      <div className="container-fluid h-100">
+      <div className="col h-100 d-flex flex-column">
         <div className="row">
           {this.displayModal()}
         </div>
-        <div className="row">
+        <div className="row align-self-start">
           <QueryCategories
           setTheState={this.setTheState}
           categories={this.state.categories}

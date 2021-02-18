@@ -11,6 +11,13 @@ export default class ItemizedCart extends React.Component {
     if (this.props.currentOrderArray === null) {
       return;
     }
+    if (this.props.currentOrderArray.length === 0) {
+      return (
+        <div className='text-center mt-5'>
+          <h1>Cart is currently empty. <br/> Start order on Orders page.</h1>
+        </div>
+      )
+    }
     return this.props.currentOrderArray.map((item) => {
       return (
         <div className="col" key={item.orderItemsId}>

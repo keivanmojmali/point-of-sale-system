@@ -5,11 +5,11 @@ export default class Payment extends React.Component {
     super(props);
     this.state = {
       user: {
-        fName: '',
-        lName: '',
-        cc: '',
-        phone: '',
-        address: ''
+        fName: 'Keivan',
+        lName: 'Mojmali',
+        cc: '000-000-0000-000',
+        phone: '999-999-9999',
+        address: '123 Place Drive'
       }
     }
     this.onChange = this.onChange.bind(this)
@@ -27,21 +27,21 @@ export default class Payment extends React.Component {
             <h2>Complete Customer Information Below</h2>
           </div>
           <div className="form-group border-bottom mb-2 border-one d-flex">
-            <input type="text" name='fName' value={this.state.user.fName} onChange={this.onChange}
+            <input type="text" name='fName' value={this.state.user.fName} onChange={this.onChange} required
               className='form-control mr-2' placeholder=' First Name ' />
             <input type="text" name='lName' value={this.state.user.lName} onChange={this.onChange}
               className='form-control ml-2' placeholder=' Last Name ' />
           </div>
           <div className="form-group">
-            <input type="text" name='cc' value={this.state.user.cc} onChange={this.onChange}
+            <input type="text" name='cc' value={this.state.user.cc} onChange={this.onChange} required
               className='form-control' placeholder=' CC # ' />
           </div>
           <div className="form-group">
-            <input type="text" name='address' value={this.state.user.address} onChange={this.onChange}
+            <input type="text" name='address' value={this.state.user.address} onChange={this.onChange} required
               className='form-control' placeholder=' Address ' />
           </div>
           <div className="form-group">
-            <input type="text" name='phone' value={this.state.user.phone} onChange={this.onChange}
+            <input type="text" name='phone' value={this.state.user.phone} onChange={this.onChange} required
               className='form-control' placeholder=' Phone Number ' />
           </div>
           <div className="form-group border-top d-flex justify-content-end">
