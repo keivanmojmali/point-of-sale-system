@@ -59,11 +59,13 @@ export default class QueryCategories extends React.Component {
 
   render() {
     return (
-      <div className="col h-100 bg-dark text-light">
-        <div className="row category-design border-bottom">
-          <h4>Categories:</h4>
+      <div className="col bg-dark text-light">
+        <div className="row border-bottom border-white">
+          <div className="col text-center">
+            <h4>Categories:</h4>
+          </div>
         </div>
-        <div className="row category-design border-bottom">
+        <div className="row d-flex flex-wrap border-bottom border-primary">
           {this.renderCategories()}
         </div>
       </div>

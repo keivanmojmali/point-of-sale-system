@@ -94,7 +94,7 @@ export default class Inventory extends React.Component {
     }
   render(){
     return (
-      <div className="col h-100 d-flex flex-column">
+      <div className="col d-flex flex-column">
         <div className="row">
           {this.displayModal()}
         </div>
@@ -104,7 +104,7 @@ export default class Inventory extends React.Component {
           categories={this.state.categories}
           />
         </div>
-        <div className="row h-100 scroll pb-five-percent">
+        <div className="row">
         <RenderInventory
         categoryData={this.state.categoryData}
         handleClick={this.handleClick}
