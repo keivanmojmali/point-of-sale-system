@@ -62,12 +62,11 @@ body{
 .change-modal {
   position: fixed !important;
   background-color: gray;
-  top: 24%;
-  left: 0% !important;
-  margin-left: 23% !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%,-25%);
   color: white;
   padding: 1%;
-  border: tomato thick 1px;
   z-index: 100;
 }
 

@@ -65,13 +65,13 @@ export default class TestOrdersPage extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid h-100">
-        <div className="row">
+      <div className="container-fluid h-100 d-flex flex-column">
+        <div className="row align-self-start">
           <QueryCategories setTheState={this.setTheState}
           categories={this.state.categories}
           />
         </div>
-        <div className="row lower-height scroll">
+        <div className="row lower-height scroll pb-2">
           <RenderItems handleClick={this.handleClick}
            categoryData={this.state.categoryData} />
         </div>
