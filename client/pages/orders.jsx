@@ -48,7 +48,7 @@ export default class Orders extends React.Component {
       return (
         <div>
           <div className="row small-gray-nav p-0 m-0"></div>
-          <div className='row d-flex justify-content-center'>
+          <div className='row d-flex flex-column align-items-center'>
             <h1>There are currently 0 open orders.</h1>
             <h1>Great job, team!</h1>
           </div>

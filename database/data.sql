@@ -157,7 +157,7 @@ values ('1'),
 insert into "directions" ("src")
 values ('Images/a.Png'),
 ('Images/start-order.gif'),
-('Images/add-to-cart.gif'),
 ('Images/cart.gif'),
-('Images/orders.gif'),
-('Images/inventory.gif')
+('Images/checkout.gif'),
+('Images/inventory-1.gif'),
+('Images/inventory-2.gif')

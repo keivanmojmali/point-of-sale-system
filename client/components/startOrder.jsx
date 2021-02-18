@@ -46,7 +46,7 @@ export default class StartOrder extends React.Component {
     return (
       <div className='text-center'>
         <h2 className='m-1'>Today is {this.getDay()}.</h2>
-        <h2> Start Order by Choosing Category</h2>
+        <h2> Start order by choosing category</h2>
       </div>
     )
   }

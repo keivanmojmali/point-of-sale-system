@@ -4,11 +4,14 @@ export default class RenderInventory extends React.Component {
   constructor(props) {
     super(props);
     this.renderRows = this.renderRows.bind(this);
+    this.renderInstruction = this.renderInstruction.bind(this);
   };
   renderRows(){
+    console.log(this.props.categoryData);
     if(this.props.categoryData === null){
       return;
     }
+
     return this.props.categoryData.map((row,index)=>{
       let rowClass = 'bg-light text-dark'
       if(index % 2 === 0) {
@@ -32,23 +35,39 @@ export default class RenderInventory extends React.Component {
       )
     })
   }
+  renderInstruction(){
+    if(this.props.categoryData === null) {
+      return (
+        <div className='row d-flex flex-column align-items-center mt-5 p-2'>
+          <h1>Inventory Management:</h1>
+          <h3>View Inventory by Category</h3>
+          <h3>Edit Inventory using "Edit" Button</h3>
+        </div>
+      )
+    } else {
+      return;
+    }
+  }
   render(){
     return(
-      <table className='table'>
-        <thead>
-          <tr>
-            <th scope='col'>ItemId</th>
-            <th scope='col'>Type</th>
-            <th scope='col'>Name</th>
-            <th scope='col'>Description</th>
-            <th scope='col'>Price</th>
-            <th scope='col'>Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderRows()}
-        </tbody>
-      </table>
+      <div className='col'>
+        <table className='table'>
+          <thead>
+            <tr className=''>
+              <th scope='col'>ItemId</th>
+              <th scope='col'>Type</th>
+              <th scope='col'>Name</th>
+              <th scope='col'>Description</th>
+              <th scope='col'>Price</th>
+              <th scope='col'>Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderRows()}
+          </tbody>
+        </table>
+        {this.renderInstruction()}
+      </div>
     )
   }
 }

@@ -59,7 +59,6 @@ export default class PopUp extends React.Component {
     if(this.state.directions === null){
       return '';
     }
-    console.log('ithithere')
     const current = this.state.displayIndex;
     const currentPath = this.state.directions[current].src;
     return currentPath;
