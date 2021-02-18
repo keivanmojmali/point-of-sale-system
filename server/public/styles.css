@@ -7,12 +7,12 @@ body{
   font-size: 250%;
 }
 
-.navbar-design {
+/* .navbar-design {
   position: fixed;
   bottom: 0;
   left: 0%;
 
-}
+} */
 
 .parent-vh {
   height: 100vh;
