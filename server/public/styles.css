@@ -2,7 +2,6 @@ body{
   height: 90vh;
   margin: 0;
   width: 100%;
-  min-width: 350px !important;
 }
 .icon-size {
   font-size: 250%;
