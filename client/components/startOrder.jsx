@@ -1,4 +1,5 @@
 import React from 'react';
+import DirectionsCarousel from './directionsCarousel'
 
 export default class StartOrder extends React.Component {
   constructor(props) {
@@ -44,9 +45,10 @@ export default class StartOrder extends React.Component {
   }
   render() {
     return (
-      <div className='text-center'>
-        <h2 className='m-1'>Today is {this.getDay()}.</h2>
-        <h2> Start order by choosing category</h2>
+      <div className='row d-flex flex-column justify-content-around'>
+        <div className="col">
+          <DirectionsCarousel />
+        </div>
       </div>
     )
   }

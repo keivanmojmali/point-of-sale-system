@@ -62,8 +62,8 @@ html {
 .change-modal {
   position: fixed !important;
   background-color: gray;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 30%;
   transform: translate(-25%,-25%);
   color: white;
   padding: 1%;
@@ -156,4 +156,12 @@ html {
 
 .web-scroll {
   -webkit-overflow-scrolling: touch;
+}
+
+.fas {
+  font-size: 2rem;
+}
+
+.carousel-max {
+  max-width: 500px;
 }

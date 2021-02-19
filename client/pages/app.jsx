@@ -8,6 +8,7 @@ import Orders from './orders';
 const root = document.querySelector('#root');
 
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,6 @@ export default class App extends React.Component {
   componentDidMount() {
     window.addEventListener('resize',()=>{
       root.style = `height: ${window.innerHeight}px`
-      console.log(root.style)
     })
     window.addEventListener('hashchange', () => {
       this.setState({
@@ -41,6 +41,7 @@ export default class App extends React.Component {
       }).catch(err => {
         console.error(err)
       })
+
     switch(this.state.route.path){
       case 'cart':
         return <Cart setCartAmount={this.setCartAmount} />;

@@ -3,7 +3,6 @@ import Navbar from '../components/navbar';
 import RenderItems from '../components/renderItems';
 import Orders from './orders';
 import QueryCategories from '../components/QueryCategories';
-import PopUp from '../components/popUp';
 
 export default class TestOrdersPage extends React.Component {
 
@@ -17,7 +16,7 @@ export default class TestOrdersPage extends React.Component {
     };
     this.setTheState = this.setTheState.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.popUp = this.popUp.bind(this);
+
   }
 
   handleClick(itemId, price) {
@@ -54,15 +53,6 @@ export default class TestOrdersPage extends React.Component {
     this.setState({ currentOrderId });
   }
 
-  popUp() {
-    // if (this.state.directionsModal === false) {
-
-    // }
-    // return (
-    //     <PopUp setTheState={this.setTheState} />
-    // );
-  }
-
   render() {
     return (
       <div className="col d-flex flex-column h-100">
@@ -75,7 +65,6 @@ export default class TestOrdersPage extends React.Component {
           <RenderItems handleClick={this.handleClick}
            categoryData={this.state.categoryData} />
         </div>
-        {this.popUp()}
       </div>
     );
   }

@@ -219,6 +219,7 @@ const sql = `
 const params = [firstName,lastName,phone];
 db.query(sql,params)
 .then(result=>{
+  console.log('aaaaaaaaaaaaaaaaaaaaa',result.rows)
   newCustomerId = result.rows[0].customerId;
   const postsql = `
   insert into "orders" ("orderId","customerId","isComplete","total","orderArray")
