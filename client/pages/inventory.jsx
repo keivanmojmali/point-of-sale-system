@@ -104,7 +104,7 @@ export default class Inventory extends React.Component {
           categories={this.state.categories}
           />
         </div>
-        <div className="row overflow-auto">
+        <div className="row overflow-auto web-scroll">
         <RenderInventory
         categoryData={this.state.categoryData}
         handleClick={this.handleClick}

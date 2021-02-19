@@ -68,6 +68,9 @@ export default class Cart extends React.Component {
     })
   }
   handleSubmit(order) {
+    if (this.state.currentOrderArray.length === 0 ) {
+      return;
+    }
     let sendTo = order;
     sendTo.orderId = this.state.currentOrderArray[0].orderId;
     sendTo.total = this.state.total;
@@ -117,11 +120,11 @@ export default class Cart extends React.Component {
   }
   render() {
     return (
-      <div className="col d-flex flex-column justify-content-between">
-        <div className="row">
+      <div className="col d-flex flex-column justify-content-between h-100">
+        <div className="row overflow-auto web-scroll">
           {this.renderPage()}
         </div>
-        <div className="row border-top">
+        <div className="row">
           <div className="p-2 bg-dark text-light col d-flex justify-content-around align-items-center">
             <h3>Total: ${this.state.total}</h3>
             {this.checkoutButton()}
