@@ -5,7 +5,7 @@ import TestOrdersPage from './TestOrderPage';
 import Cart from './cart';
 import parseRoute from '../../server/parseRoute';
 import Orders from './orders';
-
+const root = document.querySelector('#root');
 
 
 export default class App extends React.Component {
@@ -20,9 +20,8 @@ export default class App extends React.Component {
   };
   componentDidMount() {
     window.addEventListener('resize',()=>{
-      console.log(`${window.innerHeight}px`);
-      const root = document.querySelector('#root');
       root.style = `height: ${window.innerHeight}px`
+      console.log(root.style)
     })
     window.addEventListener('hashchange', () => {
       this.setState({
@@ -64,6 +63,7 @@ export default class App extends React.Component {
     this.setState({ cartAmount });
   }
   render() {
+    root.style = `height: ${window.innerHeight}px`
     return (
       <div className="container-fluid h-100 d-flex flex-column justify-content-between">
         <div className="row h-100 overflow-auto">
