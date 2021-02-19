@@ -2,6 +2,10 @@
   margin: 0;
 
 } */
+
+body {
+  max-height: 100vh;
+}
 .icon-size {
   font-size: 250%;
 }
