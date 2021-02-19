@@ -1,5 +1,6 @@
 import React from 'react';
 import StartOrder from './startOrder';
+import DirectionsCarousel from './directionsCarousel';
 
 export default class RenderItems extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class RenderItems extends React.Component {
   }
 renderData(){
   if (this.props.categoryData === null) {
-    return <StartOrder handleClick={this.props.handleClick} />
+    return <DirectionsCarousel />
   }
   return this.props.categoryData.map((item) => {
     return (

@@ -5,8 +5,8 @@ export default class Payment extends React.Component {
     super(props);
     this.state = {
       user: {
-        fName: 'Keivan',
-        lName: 'Mojmali',
+        fName: '',
+        lName: '',
         cc: '000-000-0000-000',
         phone: '999-999-9999',
         address: '123 Place Drive'
