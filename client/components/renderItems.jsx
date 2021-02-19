@@ -1,20 +1,20 @@
 import React from 'react';
-import StartOrder from './startOrder';
 import DirectionsCarousel from './directionsCarousel';
 
 export default class RenderItems extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.renderData = this.renderData.bind(this);
     this.handleClick = this.props.handleClick.bind(this);
   }
-renderData(){
-  if (this.props.categoryData === null) {
-    return <DirectionsCarousel />
-  }
-  return this.props.categoryData.map((item) => {
-    return (
-      <button key={item.itemId} className="item-width btn-outline-info row m-1 text-dark" onClick={() => { this.handleClick(item.itemId, item.price) }}>
+
+  renderData() {
+    if (this.props.categoryData === null) {
+      return <DirectionsCarousel />;
+    }
+    return this.props.categoryData.map(item => {
+      return (
+      <button key={item.itemId} className="item-width btn-outline-info row m-1 text-dark" onClick={() => { this.handleClick(item.itemId, item.price); }}>
         <div className="col">
           <img className="img-fluid mt-1 test" src={item.img} alt="Drink Image" />
           <h4>{item.name}</h4>
@@ -22,15 +22,15 @@ renderData(){
           <h6> <span className='font-weight-bold'> in Stock:</span> {item.stock}</h6>
         </div>
       </button>
-    )
-  })
-}
+      );
+    });
+  }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="col d-flex flex-wrap justify-content-center">
         {this.renderData()}
       </div>
-    )
+    );
   }
 }

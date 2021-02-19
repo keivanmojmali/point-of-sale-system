@@ -3,7 +3,7 @@ import RenderInventory from '../components/renderInventory';
 import QueryCategories from '../components/QueryCategories';
 
 export default class Inventory extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       categories: null,
@@ -18,44 +18,50 @@ export default class Inventory extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.exitModal = this.exitModal.bind(this);
   }
-  setTheState(object){
+
+  setTheState(object) {
     this.setState(object);
-  };
-  handleClick(object){
-    this.setState({displayModal: true, editModal: object});
-  };
-  exitModal(){
-    this.setState({displayModal:false, editModal:null});
   }
-  handleSubmit(){
+
+  handleClick(object) {
+    this.setState({ displayModal: true, editModal: object });
+  }
+
+  exitModal() {
+    this.setState({ displayModal: false, editModal: null });
+  }
+
+  handleSubmit() {
     event.preventDefault();
-    fetch('/api/category/updateItem',{
+    fetch('/api/category/updateItem', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state.editModal)
     })
-    .then(result=>{
-      return result.json()
-    })
-    .then(data=>{
-      this.setState({displayModal:false, editModal: null})
-    })
-    .catch(err=>console.error(err))
+      .then(result => {
+        return result.json();
+      })
+      .then(data => {
+        this.setState({ displayModal: false, editModal: null });
+      })
+      .catch(err => console.error(err));
 
   }
-  onChange(event){
-    let editModal = this.state.editModal;
+
+  onChange(event) {
+    const editModal = this.state.editModal;
     editModal[event.target.name] = event.target.value;
-    this.setState({editModal});
+    this.setState({ editModal });
   }
-    displayModal(){
-      if(this.state.displayModal === false) {
-        return;
-      }
-      return (
-            <div className='change-modal'>
+
+  displayModal() {
+    if (this.state.displayModal === false) {
+      return;
+    }
+    return (
+            <div className='change-modal border border-info'>
               <div className="d-flex justify-content-between">
               <h4>Item Id: {this.state.editModal.itemId}</h4>
               <i className='fas fa-times text-light' onClick={this.exitModal}></i>
@@ -71,7 +77,7 @@ export default class Inventory extends React.Component {
                 <input type="text" className='form-control' name='name' value={this.state.editModal.name} onChange={this.onChange} />
               </div>
               <div className="form-group">
-                <label htmlFor="description">description</label>
+                <label htmlFor="description">Description</label>
                 <input type="text" className='form-control' name='description' value={this.state.editModal.description} onChange={this.onChange} />
               </div>
                 </div>
@@ -90,9 +96,10 @@ export default class Inventory extends React.Component {
                 </div>
               </form>
             </div>
-      )
-    }
-  render(){
+    );
+  }
+
+  render() {
     return (
       <div className="col d-flex flex-column h-100">
         <div className="row">
@@ -111,6 +118,6 @@ export default class Inventory extends React.Component {
         />
         </div>
       </div>
-    )
+    );
   }
 }

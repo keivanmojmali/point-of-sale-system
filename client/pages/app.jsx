@@ -7,8 +7,6 @@ import parseRoute from '../../server/parseRoute';
 import Orders from './orders';
 const root = document.querySelector('#root');
 
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,54 +15,55 @@ export default class App extends React.Component {
       cartAmount: null
     };
     this.renderPage = this.renderPage.bind(this);
-    this.setCartAmount = this.setCartAmount.bind(this)
-  };
+    this.setCartAmount = this.setCartAmount.bind(this);
+  }
+
   componentDidMount() {
-    window.addEventListener('resize',()=>{
-      root.style = `height: ${window.innerHeight}px`
-    })
+    const itemCount = JSON.parse(localStorage.getItem('itemsInCart'));
+    this.setCartAmount(itemCount);
+    window.addEventListener('resize', () => {
+      root.style = `height: ${window.innerHeight}px`;
+    });
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
-      })
+      });
     });
-  };
+  }
+
   renderPage() {
     fetch('/api/orderItems/orderId')
       .then(result => {
-        return result.json()
+        return result.json();
       })
       .then(data => {
-        let newOrderId = data[0].max + 1;
+        const newOrderId = data[0].max + 1;
         localStorage.setItem('currentId', JSON.stringify(newOrderId));
 
       }).catch(err => {
-        console.error(err)
-      })
+        console.error(err);
+      });
 
-    switch(this.state.route.path){
+    switch (this.state.route.path) {
       case 'cart':
         return <Cart setCartAmount={this.setCartAmount} />;
-        break;
       case 'pos':
         return <TestOrdersPage setCartAmount={this.setCartAmount} />;
-        break;
       case 'inventory':
         return <Inventory />;
-        break;
-        case 'orders':
-          return <Orders />
-          break;
+      case 'orders':
+        return <Orders />;
       case '':
-        return <TestOrdersPage setCartAmount={this.setCartAmount} />
-        break;
+        return <TestOrdersPage setCartAmount={this.setCartAmount} />;
     }
-  };
+  }
+
   setCartAmount(cartAmount) {
     this.setState({ cartAmount });
   }
+
   render() {
-    root.style = `height: ${window.innerHeight}px`
+    root.style = `height: ${window.innerHeight}px`;
     return (
       <div className="container-fluid h-100 d-flex flex-column justify-content-between">
         <div className="row h-100 overflow-auto">
@@ -76,6 +75,6 @@ export default class App extends React.Component {
             </div>
         </div>
       </div>
-    )
+    );
   }
 }

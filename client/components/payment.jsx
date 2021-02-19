@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class Payment extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       user: {
@@ -11,14 +11,16 @@ export default class Payment extends React.Component {
         phone: '999-999-9999',
         address: '123 Place Drive'
       }
-    }
-    this.onChange = this.onChange.bind(this)
+    };
+    this.onChange = this.onChange.bind(this);
   }
-  onChange(event){
-    let user = this.state.user;
+
+  onChange(event) {
+    const user = this.state.user;
     user[event.target.name] = event.target.value;
-    this.setState({user});
+    this.setState({ user });
   }
+
   render() {
     return (
       <div className="col">
@@ -46,14 +48,14 @@ export default class Payment extends React.Component {
           </div>
           <div className="form-group border-top d-flex justify-content-end">
             <button onClick={() => {
-              this.props.handleSubmit(this.state.user)
-              window.location.href = '#orders'
+              this.props.handleSubmit(this.state.user);
+              window.location.href = '#orders';
             }} className='btn btn-lg btn-primary mt-3'>
               Submit
           </button>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }

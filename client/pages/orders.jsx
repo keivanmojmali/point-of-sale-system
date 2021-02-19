@@ -5,46 +5,49 @@ export default class Orders extends React.Component {
     super(props);
     this.state = {
       orders: null
-    }
-  this.renderOrders = this.renderOrders.bind(this);
-  this.orderLi = this.orderLi.bind(this);
-  this.handleClick = this.handleClick.bind(this);
-  };
+    };
+    this.renderOrders = this.renderOrders.bind(this);
+    this.orderLi = this.orderLi.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   orderLi(orderArray) {
-    return orderArray.map((item)=>{
-      let parsed = JSON.parse(item);
+    return orderArray.map(item => {
+      const parsed = JSON.parse(item);
       return <li key={parsed.orderItemsId}>
         {parsed.name}
-      </li>
-    })
-  };
-  handleClick(itemId){
-    let fetchBody = {"orderId":itemId};
-    fetch('/api/orders/complete',{
+      </li>;
+    });
+  }
+
+  handleClick(itemId) {
+    const fetchBody = { orderId: itemId };
+    fetch('/api/orders/complete', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(fetchBody)
     })
-    .then(result=>{
-      return result.json()
-    })
-    .then(data=>{
-      fetch('/api/getAll/orders')
-      .then(result=>result.json())
-      .then(data=>{
-        this.setState({orders: data})
+      .then(result => {
+        return result.json();
       })
-      .catch(err=>console.error(err))
-    })
-    .catch(err=>console.error(err))
+      .then(data => {
+        fetch('/api/getAll/orders')
+          .then(result => result.json())
+          .then(data => {
+            this.setState({ orders: data });
+          })
+          .catch(err => console.error(err));
+      })
+      .catch(err => console.error(err));
   }
-  renderOrders(){
-    if(this.state.orders === null){
+
+  renderOrders() {
+    if (this.state.orders === null) {
       return;
     }
-    if(this.state.orders.length === 0) {
+    if (this.state.orders.length === 0) {
       return (
         <div>
           <div className="row small-gray-nav"></div>
@@ -53,9 +56,9 @@ export default class Orders extends React.Component {
             <h1>Great job, team!</h1>
           </div>
         </div>
-      )
+      );
     }
-    return this.state.orders.map((order)=>{
+    return this.state.orders.map(order => {
       return (
         <div className="row border border-dark mb-2" key={order.customerId}>
           <div className="col">
@@ -84,29 +87,31 @@ export default class Orders extends React.Component {
                 </ul>
               </div>
               <div className="col pt-2 text-right">
-                <button onClick={()=>{this.handleClick(order.orderId)}} className='btn btn-sm btn-primary'>Complete</button>
+                <button onClick={() => { this.handleClick(order.orderId); }} className='btn btn-sm btn-primary'>Complete</button>
               </div>
             </div>
           </div>
         </div>
-      )
-    })
-  };
-  componentDidMount(){
-    fetch('/api/getAll/orders')
-    .then(result=>{
-      return result.json()
-    })
-    .then(data=>{
-      this.setState({orders: data})
-    })
-    .catch(err=>next(err))
+      );
+    });
   }
-  render(){
-return (
+
+  componentDidMount() {
+    fetch('/api/getAll/orders')
+      .then(result => {
+        return result.json();
+      })
+      .then(data => {
+        this.setState({ orders: data });
+      })
+      .catch(err => next(err));
+  }
+
+  render() {
+    return (
   <div className="col p-4">
     {this.renderOrders()}
   </div>
-    )
+    );
   }
 }

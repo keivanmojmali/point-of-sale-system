@@ -3,17 +3,19 @@ import React from 'react';
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.itemsInCart = this.itemsInCart.bind(this)
-  };
-  itemsInCart(){
-    if(this.props.itemsInCart > 0 ){
+    this.itemsInCart = this.itemsInCart.bind(this);
+  }
+
+  itemsInCart() {
+    if (this.props.itemsInCart > 0) {
       return <div className='d-flex justify-content-center align-items-center items-in-cart'>
         {this.props.itemsInCart}
-      </div>
+      </div>;
     }
-  };
+  }
+
   render() {
-    return(
+    return (
       <nav className="border-top border-dark navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
         <a href="#pos" className="navbar-brand d-flex center-all">
           <i className="icon-size fas fa-mug-hot"></i>
@@ -29,6 +31,6 @@ export default class Navbar extends React.Component {
           <i className='icon-size fas fa-dolly-flatbed'></i>
         </a>
       </nav>
-    )
+    );
   }
 }
