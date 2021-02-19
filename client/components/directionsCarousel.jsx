@@ -12,7 +12,7 @@ export default class DirectionsCarousel extends React.Component {
         'Images/checkout.gif',
         'Images/orders.gif',
         'Images/inventory-1.gif',
-        'Images/Inventory-2.gif'
+        'Images/inventory-2.gif'
       ]
     };
     this.handleForward = this.handleForward.bind(this);
