@@ -14,7 +14,7 @@ export default class Navbar extends React.Component {
   };
   render() {
     return(
-      <nav className="navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
+      <nav className="border-top border-dark navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
         <a href="#pos" className="navbar-brand d-flex center-all">
           <i className="icon-size fas fa-mug-hot"></i>
         </a>
