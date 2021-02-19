@@ -40,8 +40,8 @@ export default class RenderInventory extends React.Component {
       return (
         <div className='row d-flex text-center flex-column align-items-center mt-5 p-2'>
           <h1>Inventory Management:</h1>
-          <h3>View Inventory by Category</h3>
-          <h3>Edit Inventory using "Edit" Button</h3>
+          <h3>View Inventory by Category.</h3>
+          <h3>Edit Inventory using "Edit" Button.</h3>
         </div>
       );
     }
