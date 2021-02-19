@@ -156,9 +156,10 @@ values ('1'),
 
 
 insert into "customers" ("customerId","phone","firstName","lastName")
-values ('989','999-999-9999','Susan','Wojcicki'),
-('299','999-999-9999','Warren','Buffett'),
-('3999','999-999-9999','Ruth','Porat');
+values ('989','999-999-9999','Tyrion', 'Lannister'),
+('3999','999-999-9999','Leslie','Knope'),
+('299','999-999-9999','Michael','Scott');
+
 
 
   insert into "orders" ("orderId","customerId","isComplete","total","orderArray")
