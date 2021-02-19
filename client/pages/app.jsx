@@ -19,6 +19,11 @@ export default class App extends React.Component {
     this.setCartAmount = this.setCartAmount.bind(this)
   };
   componentDidMount() {
+    window.addEventListener('resize',()=>{
+      console.log(`${window.innerHeight}px`);
+      const root = document.querySelector('#root');
+      root.style = `height: ${window.innerHeight}px`
+    })
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
