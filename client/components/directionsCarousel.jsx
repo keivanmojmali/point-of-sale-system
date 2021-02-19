@@ -114,7 +114,7 @@ export default class DirectionsCarousel extends React.Component {
             <img className="img-fluid" src={this.currentPath()} alt="directions" />
           </div>
         </div>
-        <div className="row bg-secondary">
+        <div className="row border border-primary">
           <div onClick={this.handleBack} className="col d-flex justify-content-center align-items-center">
             <i className="fas fa-chevron-left"></i>
             <h5 className='mr-1 mt-1'>Previous</h5>
