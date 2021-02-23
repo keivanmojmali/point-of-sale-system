@@ -61,7 +61,7 @@ export default class QueryCategories extends React.Component {
     return (
 
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-light w-100">
-        <a className="navbar-bran text-light mr-2" href="#"><h3>Categories</h3></a>
+        <h3 className="navbar-brand text-light mr-2">Categories</h3>
         <button className="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
