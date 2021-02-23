@@ -11,7 +11,7 @@ export default class TestOrdersPage extends React.Component {
     this.state = {
       categories: null,
       categoryData: null,
-      currentOrderId: null,
+      // currentOrderId: null,
       directionsModal: true
     };
     this.setTheState = this.setTheState.bind(this);
@@ -22,9 +22,11 @@ export default class TestOrdersPage extends React.Component {
   handleClick(itemId, price) {
     const items = JSON.parse(localStorage.getItem('itemsInCart')) + 1;
     const newNum = JSON.stringify(items);
+    const currentOrderId = JSON.parse(localStorage.getItem('currentId'));
     localStorage.setItem('itemsInCart', newNum);
     this.props.setCartAmount(newNum);
-    const sendTo = { itemId, orderId: this.state.currentOrderId };
+    const sendTo = { itemId, orderId: currentOrderId };
+    console.log('sendto', sendTo);
     fetch('/api/addTo/openOrders', {
       method: 'POST',
       headers: {
@@ -39,8 +41,7 @@ export default class TestOrdersPage extends React.Component {
       })
       .catch(err => {
         console.error(err);
-        next(err)
-        ;
+
       });
   }
 
@@ -48,12 +49,14 @@ export default class TestOrdersPage extends React.Component {
     this.setState(input);
   }
 
-  componentDidMount() {
-    const currentOrderId = JSON.parse(localStorage.getItem('currentId'));
-    this.setState({ currentOrderId });
-  }
+  // componentDidMount() {
+  //   console.log('it hit here');
+  //   const currentOrderId = JSON.parse(localStorage.getItem('currentId'));
+  //   this.setState({ currentOrderId });
+  // }
 
   render() {
+    console.log(this.state.currentOrderId);
     return (
       <div className="col d-flex flex-column h-100">
         <div className="row align-self-start w-100 p-0 m-0">

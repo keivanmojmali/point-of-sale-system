@@ -8,7 +8,8 @@ export default class Cart extends React.Component {
     this.state = {
       total: null,
       currentOrderArray: null,
-      checkout: false
+      checkout: false,
+      removedIds: []
     };
     this.queryOrder = this.queryOrder.bind(this);
     this.renderPage = this.renderPage.bind(this);
@@ -49,7 +50,12 @@ export default class Cart extends React.Component {
   }
 
   handleRemove(orderItemsId) {
-
+    const checkForRemoved = [...this.state.removedIds];
+    if (checkForRemoved.includes(orderItemsId)) {
+      return;
+    }
+    checkForRemoved.push(orderItemsId);
+    this.setState({ removedIds: checkForRemoved });
     const items = JSON.parse(localStorage.getItem('itemsInCart')) - 1;
     const newNum = JSON.stringify(items);
     localStorage.setItem('itemsInCart', newNum);
