@@ -27,8 +27,21 @@
 
 .fas:hover{
   color: red !important;
+  cursor: pointer;
 }
 
+a:hover{
+  cursor: pointer;
+  color: red;
+}
+
+.red {
+  cursor: pointer;
+}
+.red:hover{
+  cursor: pointer;
+  color: red;
+}
 
 .absolute-above-bar{
   position: absolute;
@@ -79,7 +92,7 @@
 }
 
 .cat-btn-width {
-  width: 110px !important;
+  width: 120px !important;
 }
 
 .small-gray-nav {

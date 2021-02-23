@@ -112,11 +112,11 @@ export default class DirectionsCarousel extends React.Component {
           </div>
         </div>
         <div className="row border border-primary">
-          <div onClick={this.handleBack} className="col d-flex justify-content-center align-items-center">
+          <div onClick={this.handleBack} className="red col d-flex justify-content-center align-items-center">
             <i className="fas fa-chevron-left"></i>
             <h5 className='mr-1 mt-1'>Previous</h5>
           </div>
-          <div onClick={this.handleForward} className="col d-flex justify-content-center align-items-center">
+          <div onClick={this.handleForward} className="red col d-flex justify-content-center align-items-center">
               <h5 className='mr-1 mt-1'>Next</h5>
             <i className="fas fa-chevron-right"></i>
           </div>

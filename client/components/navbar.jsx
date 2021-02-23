@@ -17,18 +17,24 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <nav className="border-top border-dark navbar align-items-center justify-content-around bg-light navbar-light d-flex w-100">
-        <a href="#pos" className="navbar-brand d-flex center-all">
+        <a href="#pos" className="text-center navbar-brand d-flex flex-column red">
           <i className="icon-size fas fa-mug-hot"></i>
+          <h6 className='red'>Browse</h6>
         </a>
-        <a href="#cart" className="navbar-brand d-flex center-all">
-          <i className='icon-size fas fa-shopping-cart'></i>
-          {this.itemsInCart()}
+        <a href="#cart" className="text-center navbar-brand d-flex flex-column red">
+          <div className="navbar-brand d-flex m-0">
+            <i className='icon-size fas fa-shopping-cart'></i>
+            {this.itemsInCart()}
+          </div>
+          <h6 className='red'>Cart</h6>
         </a>
-        <a href="#orders" className="navbar-brand d-flex center-all">
+        <a href="#orders" className="text-center navbar-brand d-flex flex-column red">
           <i className='icon-size fas fa-box-open'></i>
+          <h6 className='red'>Open-Orders</h6>
         </a>
-        <a href="#inventory" className="navbar-brand d-flex center-all">
+        <a href="#inventory" className="text-center navbar-brand d-flex flex-column red">
           <i className='icon-size fas fa-dolly-flatbed'></i>
+          <h6 className='red'>Inventory</h6>
         </a>
       </nav>
     );
