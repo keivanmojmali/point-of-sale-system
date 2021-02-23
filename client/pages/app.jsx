@@ -19,6 +19,23 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    const newUser = localStorage.getItem('returningUser');
+
+    if (newUser === null) {
+      fetch('/api/newUser', {
+        method: 'POST'
+      })
+        .then(result => result.json())
+        .then(data => {
+        })
+        .catch(err => console.error(err));
+
+      localStorage.clear('itemsInCart');
+      const yes = 'Y';
+      localStorage.setItem('returningUser', JSON.stringify(yes));
+      this.setState({ cartAmount: 0 });
+
+    }
     const itemCount = JSON.parse(localStorage.getItem('itemsInCart'));
     this.setCartAmount(itemCount);
     window.addEventListener('resize', () => {

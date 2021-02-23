@@ -30,7 +30,7 @@ export default class QueryCategories extends React.Component {
     }
     return this.props.categories.map(category => {
       return (
-        <li className="nav-item align-self-center ml-2" key={category.type}>
+        <li className="item-width nav-item align-self-center ml-2" key={category.type} data-toggle="collapse" data-target="#navbarSupportedContent" >
           <button className='btn btn-outline-light mt-2 mb-2 cat-btn-width h-100' onClick={this.getCategoryData}>
             <h5>{category.type}</h5>
           </button>
@@ -68,12 +68,12 @@ export default class QueryCategories extends React.Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+          <ul className="menu mr-auto">
             {this.renderCategories()}
           </ul>
         </div>
       </nav>
 
-    )
+    );
   }
 }

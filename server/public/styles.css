@@ -46,6 +46,18 @@
   width: 30%;
 }
 
+.menu{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  padding-left: 0;
+  margin-bottom: 0%;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+.thirty-basis {
+  flex-basis: 30%;
+}
 
 .twenty-basis {
   flex-basis: 20% !important;
