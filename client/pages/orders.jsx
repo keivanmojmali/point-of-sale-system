@@ -61,9 +61,9 @@ export default class Orders extends React.Component {
         </div>
       );
     }
-    return this.state.orders.map(order => {
+    return this.state.orders.map((order, index) => {
       return (
-        <div className="row border border-dark mb-2" key={order.customerId}>
+        <div className="row border border-dark mb-2" key={index}>
           <div className="col">
             <div className="row bg-dark text-light">
               <div className="col">
