@@ -12,7 +12,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
-      cartAmount: null
+      cartAmount: null,
+      welcome: true
     };
     this.renderPage = this.renderPage.bind(this);
     this.setCartAmount = this.setCartAmount.bind(this);
