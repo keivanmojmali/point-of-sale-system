@@ -11,6 +11,7 @@ export default class RenderItems extends React.Component {
   renderData() {
     if (this.props.categoryData === null) {
       return <DirectionsCarousel />;
+      return;
     }
     return this.props.categoryData.map(item => {
       return (
