@@ -29,7 +29,7 @@ https://point-of-sale-mojmali.herokuapp.com/#pos
 
 ### Initial landing page - User can start new customer's order
 
-![start-order](server/public/Images/start-order.gif)
+
 
 ### Shopping Cart - User can edit items or continue with transaction 
 
