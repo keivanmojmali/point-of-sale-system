@@ -73,7 +73,7 @@ export default class DirectionsCarousel extends React.Component {
       case 4:
         return (
           <div className="col">
-            <h5>View all inventory using category menu</h5>
+            <h5>View inventory using category menu</h5>
           </div>
         );
       case 5:
