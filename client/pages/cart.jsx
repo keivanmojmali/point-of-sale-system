@@ -123,6 +123,10 @@ export default class Cart extends React.Component {
 
   checkoutButton() {
     if (this.state.checkout === false) {
+      if (this.state.total === null ||
+        this.state.total === 0) {
+        return;
+      }
       return (
         <button className='btn btn-lg btn-primary'
           onClick={this.handleCheckout}>Checkout</button>
