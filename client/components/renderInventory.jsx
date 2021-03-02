@@ -22,7 +22,12 @@ export default class RenderInventory extends React.Component {
           <td>
             <button
             onClick={() => { this.props.handleClick(row); }}
-            className='btn btn-sm btn-primary'>
+            className='btn btn-sm btn-primary'
+              type="button"
+              className="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              >
               Edit: {row.itemId}
             </button>
           </td>
