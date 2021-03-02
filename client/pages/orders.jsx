@@ -65,16 +65,11 @@ export default class Orders extends React.Component {
       return (
         <div className="row border border-dark mb-2" key={index}>
           <div className="col">
-            <div className="row bg-dark text-light">
+            <div className="row bg-dark text-light p-1">
               <div className="col">
                 {order.firstName} {order.lastName}
               </div>
               <div className="col">
-                <div className="row">
-                  <div className="col text-right">
-                    Order #{order.orderId}
-                  </div>
-                </div>
                 <div className="row">
                   <div className="col text-right">
                     Total: ${order.total}

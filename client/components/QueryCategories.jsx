@@ -49,7 +49,7 @@ export default class QueryCategories extends React.Component {
         this.props.setTheState({ categoryData: data });
       })
       .catch(err => {
-        next(err);
+        console.error(err);
       });
   }
 

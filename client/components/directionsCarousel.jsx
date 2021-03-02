@@ -96,7 +96,7 @@ export default class DirectionsCarousel extends React.Component {
 
   render() {
     return (
-      <div className="carousel mt-3 carousel-max">
+      <div className="carousel carousel-max">
         <div className="row ">
           {this.directions()}
         </div>

@@ -149,3 +149,14 @@ a:hover{
   flex-basis: 15% !important;
 }
 }
+
+
+.p-width {
+  width: 80%;
+}
+
+@media only screen and (min-width: 700px) {
+  .p-width {
+    width: 60%;
+  }
+}
