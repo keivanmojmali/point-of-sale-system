@@ -97,12 +97,6 @@ export default class DirectionsCarousel extends React.Component {
   render() {
     return (
       <div className="carousel mt-3 carousel-max">
-        <div className="row">
-          <div className="col">
-            <h5 className='border-bottom border-primary p-1'>Point of Sale <br/> and Inventory Management Application</h5>
-            <p>Quick Overview:</p>
-          </div>
-        </div>
         <div className="row ">
           {this.directions()}
         </div>
