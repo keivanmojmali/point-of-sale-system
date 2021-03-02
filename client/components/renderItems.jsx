@@ -65,7 +65,7 @@ export default class RenderItems extends React.Component {
             collect payments, track open orders, without being tied down to a single location.
           </p>
           <p>
-            Press the button below for a qucik walk through of the features.
+            Press the button below for a quick walk through of the features.
           </p>
           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Launch Walk Through
