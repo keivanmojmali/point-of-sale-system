@@ -11,7 +11,25 @@ export default class RenderItems extends React.Component {
 
   renderData() {
     if (this.props.categoryData === null) {
-      return;
+      return (
+        <div className='d-flex flex-column align-items-center justify-content-center h-100 text-center'>
+          <h3>Welcome to Point of Sale and <br />
+           Inventory Management Application</h3>
+          <p className='p-width'>
+            An enterprise application for brick-and-mortar retailers that conduct in-person sales.
+           </p>
+          <p className='p-width'>
+            This all-in-one application allows retailers to sell their products, keep track of inventory,
+            collect payments, track open orders, all without being tied down to a single location.
+          </p>
+          <p className='p-width'>
+            Press the button below for a quick walk through of the features.
+          </p>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Launch Walk Through
+          </button>
+        </div>
+      );
     }
     return this.props.categoryData.map(item => {
       return (
@@ -55,23 +73,6 @@ export default class RenderItems extends React.Component {
       <div className="col d-flex flex-wrap justify-content-center">
         {this.renderData()}
         {this.modal()}
-        <div className='d-flex flex-column align-items-center justify-content-center h-100 text-center'>
-          <h3>Welcome to Point of Sale and <br />
-           Inventory Management Application</h3>
-          <p className='p-width'>
-            An enterprise application for brick-and-mortar retailers that conduct in-person sales.
-           </p>
-          <p className='p-width'>
-            This all-in-one application allows retailers to sell their products, keep track of inventory,
-            collect payments, track open orders, all without being tied down to a single location.
-          </p>
-          <p className='p-width'>
-            Press the button below for a quick walk through of the features.
-          </p>
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Launch Walk Through
-          </button>
-        </div>
       </div>
     );
   }
