@@ -54,7 +54,7 @@ export default class TestOrdersPage extends React.Component {
           categories={this.state.categories}
           />
         </div>
-        <div className="row overflow-auto web-scroll">
+        <div className="row overflow-auto web-scroll h-100">
           <RenderItems handleClick={this.handleClick}
            categoryData={this.state.categoryData} />
         </div>
