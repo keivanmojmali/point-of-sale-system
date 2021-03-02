@@ -6,11 +6,12 @@ export default class RenderItems extends React.Component {
     super(props);
     this.renderData = this.renderData.bind(this);
     this.handleClick = this.props.handleClick.bind(this);
+    this.modal = this.modal.bind(this);
   }
 
   renderData() {
     if (this.props.categoryData === null) {
-      return <DirectionsCarousel />;
+      // return <DirectionsCarousel />;
       return;
     }
     return this.props.categoryData.map(item => {
@@ -27,10 +28,33 @@ export default class RenderItems extends React.Component {
     });
   }
 
+  modal() {
+    return (
+      <div className="modal" tabIndex='-1' role='dialog'>
+        <div className="modal-dialog modal-dialog-centered" role='document'>
+          <div className="modal-content">
+            <div className="modal-header">
+              <button className='close' type='button' data-dismiss='modal' aria-label='close'>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <DirectionsCarousel />
+            </div>
+            <div className="modal-footer">
+              <button>Hello</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="col d-flex flex-wrap justify-content-center">
         {this.renderData()}
+        {this.modal()}
       </div>
     );
   }
