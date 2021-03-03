@@ -164,3 +164,7 @@ a:hover{
 .z-5000 {
   z-index: 50000 !important;
 }
+
+.modal-backdrop {
+  z-index: -1 !important;
+}
