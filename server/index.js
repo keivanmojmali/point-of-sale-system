@@ -308,28 +308,25 @@ app.get('/api/getAll/orders', (req, res, next) => {
 //     });
 // });
 
-app.post('/api/newUser', (req, res, next0 => {
+app.post('/api/newUser', (req, res, next) => {
   const sql = `
   insert into "customers" ("phone","firstName","lastName")
   values ('999-999-9999','Tyrion', 'Lannister'),
-  (999-999-9999','Leslie','Knope'),
-  ('999-999-9999','Michael','Scott')
+  (999 - 999 - 9999','Leslie','Knope'),
+  ('999-999-9999', 'Michael', 'Scott')
   returning *
     `;
   db.query(sql)
     .then(result => {
-      console.log(result.rows)
-      res.(201).json(result.rows)
+      console.log(result.rows);
+      res.status(201).json(result.rows);
     })
     .catch(err => {
-      console.error(err)
-      next(err)
-    })
+      console.error(err);
+      next(err);
+    });
 
-
-
-}))
-
+});
 
 app.use(errorMiddleware);
 
