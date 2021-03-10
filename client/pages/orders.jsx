@@ -72,7 +72,8 @@ export default class Orders extends React.Component {
               <div className="col">
                 <div className="row">
                   <div className="col text-right">
-                    Total: ${order.total}
+                    <div> Order ID: {order.orderId} </div>
+                    <div> Total: ${order.total} </div>
                   </div>
                 </div>
               </div>
